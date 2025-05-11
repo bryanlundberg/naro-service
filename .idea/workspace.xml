@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Add Projects page and remove unused SVG assets&#10;&#10;Added a new Projects page with a table view and modal for creating projects. Removed unused SVG assets (file.svg, globe.svg, next.svg, vercel.svg, window.svg) to clean up the public directory. Added a logo_large_dark.svg asset for branding purposes.">
+    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Refactor component props and improve code readability&#10;&#10;Added unique keys to list items in the Projects page for better React rendering. Simplified and streamlined imports in the layout file for consistency. Addressed TypeScript linting with a temporary rule adjustment in the API route.">
+      <change afterPath="$PROJECT_DIR$/app/api/v1/projects/[orgId]/[projectId]/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/v1/projects/[orgId]/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/v1/projects/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/loader/loader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/fetcher.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/naro/db-manager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/[appId]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/[appId]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/projects/[appId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[appId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar/navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/[appId]/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/projects/[appId]/manage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/manage/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/projects/[appId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app/projects/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +45,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "register-instances",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -53,6 +62,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service\app\api\v1\projects" />
       <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service\app" />
       <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service" />
     </key>
@@ -134,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746972280441</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactor component props and improve code readability&#10;&#10;Added unique keys to list items in the Projects page for better React rendering. Simplified and streamlined imports in the layout file for consistency. Addressed TypeScript linting with a temporary rule adjustment in the API route.">
+      <option name="closed" value="true" />
+      <created>1746980944583</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746980944583</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +164,7 @@
     <MESSAGE value="Remove unused files and update dependencies.&#10;&#10;Deleted legacy files, redundant project configuration files, and old example code. Updated `tsconfig.json` paths and added new dependencies in `pnpm-lock.yaml` to reflect project changes. Cleaned up for a more streamlined structure." />
     <MESSAGE value="Add Clerk authentication middleware and UI integration&#10;&#10;Introduced Clerk middleware for route protection and configured it for specific paths. Updated the root layout to include ClerkProvider and authentication UI components (SignIn, SignUp, and UserButton) for better user session management." />
     <MESSAGE value="Add Projects page and remove unused SVG assets&#10;&#10;Added a new Projects page with a table view and modal for creating projects. Removed unused SVG assets (file.svg, globe.svg, next.svg, vercel.svg, window.svg) to clean up the public directory. Added a logo_large_dark.svg asset for branding purposes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Projects page and remove unused SVG assets&#10;&#10;Added a new Projects page with a table view and modal for creating projects. Removed unused SVG assets (file.svg, globe.svg, next.svg, vercel.svg, window.svg) to clean up the public directory. Added a logo_large_dark.svg asset for branding purposes." />
+    <MESSAGE value="Refactor component props and improve code readability&#10;&#10;Added unique keys to list items in the Projects page for better React rendering. Simplified and streamlined imports in the layout file for consistency. Addressed TypeScript linting with a temporary rule adjustment in the API route." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor component props and improve code readability&#10;&#10;Added unique keys to list items in the Projects page for better React rendering. Simplified and streamlined imports in the layout file for consistency. Addressed TypeScript linting with a temporary rule adjustment in the API route." />
   </component>
 </project>

@@ -45,8 +45,6 @@ export default function Page() {
         "id": "1",
         "name": "test",
         "description": "test",
-        "createdAt": Date.now(),
-        "updatedAt": Date.now()
       },
       null,
       2

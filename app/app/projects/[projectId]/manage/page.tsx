@@ -4,9 +4,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DatabaseIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useOrganization, useUser } from "@clerk/nextjs";
+import useSWR from "swr";
+import { fetcher } from "@/lib/fetcher";
 
 export default function Page() {
   const router = useRouter();
+  const { user } = useUser();
+  const { organization } = useOrganization();
+
+
+  // const { data, isLoading, mutate } = useSWR(`/api/v1/projects/${organization ? organization?.id : user?.id}`, fetcher);
 
   return (
     <div className={"flex flex-col gap-2"}>
@@ -58,7 +66,6 @@ const db = new Naro("connect", { URI });`}</code>
 });`}</code>
   </pre>
       </div>
-
     </div>
   );
 }
