@@ -1,5 +1,10 @@
 import { Naro } from "@narodb/naro";
 
-const db = new Naro("system-dev")
+let db: Naro | null = null;
 
-export default db;
+const getDatabase = (): Naro => {
+  if (!db) db = new Naro("system-dev");
+  return db;
+};
+
+export default getDatabase;

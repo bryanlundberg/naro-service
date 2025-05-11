@@ -1,26 +1,23 @@
-import db from "@/naro/db";
 import { NextResponse } from "next/server";
+import getDatabase from "@/naro/db";
 
-export async function GET(request: Request, { params }: { params: Promise<{ appId: string }> }) {
-  const { appId } = await params;
-  if (!appId || appId === "undefined") throw new Error("Invalid projectId");
+export async function GET(request: Request, { params }: { params: Promise<{ projectId: string }> }) {
+  const db = getDatabase();
+  const { projectId } = await params;
+
+  if (!projectId || projectId === "undefined") throw new Error("Invalid projectId");
 
   const projects = await db.getAll("projects", {
     limit: 1,
     filters: [
       {
-        field: "applicationId",
+        field: "id",
         operator: "==",
-        value: appId
+        value: projectId
       }
     ]
   });
 
-  if (!projects || projects.length === 0) {
-    return NextResponse.json({ ok: false, message: "No projects found" });
-  }
-
   const project = projects[0];
-
   return NextResponse.json(project);
 }

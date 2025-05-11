@@ -47,7 +47,8 @@ export default function Page() {
 
   const handleCreateProject = async (data: any) => {
     try {
-      await axios.post("/api/v1/projects", { ...data, orgId: organization ? organization.id : user?.id });
+      const orgId = organization ? organization.id : user?.id
+      await axios.post(`/api/v1/projects/${orgId}`, { ...data, orgId });
       await mutate();
       setIsModalOpen(false);
     } catch (e) {

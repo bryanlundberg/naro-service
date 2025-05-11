@@ -3,18 +3,25 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DatabaseIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
+import Loader from "@/components/loader/loader";
+import moment from "moment";
 
 export default function Page() {
   const router = useRouter();
   const { user } = useUser();
   const { organization } = useOrganization();
+  const { projectId } = useParams()
 
+  const orgId = organization ? organization.id : user?.id;
+  const { data: instance, isLoading, mutate } = useSWR(`/api/v1/projects/${orgId}/${projectId}`, fetcher);
 
-  // const { data, isLoading, mutate } = useSWR(`/api/v1/projects/${organization ? organization?.id : user?.id}`, fetcher);
+  if (isLoading) return <Loader/>;
+
+  console.log(instance);
 
   return (
     <div className={"flex flex-col gap-2"}>
@@ -22,8 +29,8 @@ export default function Page() {
         <div>
           <h1 className={"font-black text-5xl"}>my-incredible-app</h1>
           <div>
-            <div className={"font-mono text-sm mt-3"}>Application ID: 99432113432</div>
-            <div className={"font-mono text-sm"}>Created at: 2023-10-01</div>
+            <div className={"font-mono text-sm mt-3"}>Application ID: {instance.applicationId}</div>
+            <div className={"font-mono text-sm"}>Created at: {instance.createdAt ? moment(instance.createdAt).format("MM-DD-YYYY") : "N/A"}</div>
           </div>
         </div>
         <div className={"flex gap-2"}>
@@ -37,7 +44,7 @@ export default function Page() {
       <div className={"text-lg font-semibold"}>Naro URI</div>
       <Input
         className={"w-full max-w-[550px]"}
-        value="narodb://user_2wv5d07JPRUflViF2uKBhjgzSYf:naroapi.com:4010/99432113432"
+        value={`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}
         readOnly
       />
 
@@ -46,7 +53,7 @@ export default function Page() {
       <div>Create a .env file in the root of your project</div>
       <div className={"bg-gray-100 p-4 rounded text-sm"}>
         <pre>
-    <code>{`NARODB_URI=narodb://user_2wv5d07JPRUflViF2uKBhjgzSYf:naroapi.com:4010/99432113432`}</code>
+    <code>{`NARODB_URI=${`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}`}</code>
   </pre>
       </div>
 

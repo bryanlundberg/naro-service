@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { MonitorIcon } from "lucide-react";
 import GearIcon from "next/dist/client/components/react-dev-overlay/ui/icons/gear-icon";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function Page() {
+  const { projectId } = useParams()
   const router = useRouter();
   const listItem = (label: string, key: number) => {
     return <div
