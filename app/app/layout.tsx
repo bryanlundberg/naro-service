@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar/navbar";
 import React from "react";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { ClerkLoaded } from "@clerk/nextjs";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +19,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className={"absolute top-0 left-0 w-full h-full z-10 overflow-auto"}>
           <Navbar/>
           <div className={"max-w-7xl mx-auto p-4"}>
-            {children}
+            <ClerkLoaded>
+              {children}
+            </ClerkLoaded>
           </div>
         </div>
       </div>
