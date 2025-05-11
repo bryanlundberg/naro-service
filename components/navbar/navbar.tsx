@@ -6,10 +6,7 @@ import {
   SignedOut,
   SignInButton,
   SignUpButton,
-  useOrganization,
-  useOrganizationList,
   UserButton,
-  useSession,
   useUser
 } from "@clerk/nextjs";
 import React from "react";
@@ -19,9 +16,6 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const { user } = useUser();
-  const { userMemberships } = useOrganizationList();
-  const asd = useOrganization();
-  const ses = useSession();
   const router = useRouter();
 
   return (
@@ -32,7 +26,7 @@ export default function Navbar() {
           alt="Logo"
           width={60}
           height={60}
-          className="size-10 object-cover filter grayscale hover:cursor-pointer"
+          className="size-9 object-cover filter grayscale hover:cursor-pointer"
           onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
         />
 
@@ -41,7 +35,7 @@ export default function Navbar() {
 
         <div className={"select-none"}>/</div>
 
-        <OrganizationSwitcher afterSelectOrganizationUrl={(org) => `/app/projects/${org.id}`} />
+        <OrganizationSwitcher afterSelectPersonalUrl={(select) => `/app/projects`} afterSelectOrganizationUrl={(org) => `/app/projects`} />
 
         <div className={"select-none"}>/</div>
 

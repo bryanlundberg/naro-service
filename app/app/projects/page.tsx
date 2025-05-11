@@ -1,10 +1,9 @@
 "use client";
 
-import { CreateOrganization, useUser } from "@clerk/nextjs";
 import {
   Dialog, DialogClose,
   DialogContent,
-  DialogDescription, DialogFooter,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger
@@ -25,11 +24,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const deFlag = findFlagUrlByIso2Code("DE");
   const snFlag = findFlagUrlByIso2Code("SG")
   const usFlag = findFlagUrlByIso2Code("US");
+  const router = useRouter();
 
   return (
     <>
@@ -39,7 +40,7 @@ export default function Page() {
 
         <div className={"flex flex-col gap-2"}>
           <h1 className={"font-black text-5xl"}>Projects</h1>
-          <p className={"font-mono text-sm mt-3"}>The NaroBase projects are containers for your apps.</p>
+          <p className={"font-mono text-sm mt-3"}>The NaroBase projects are containers for your databases.</p>
         </div>
 
 
@@ -114,14 +115,14 @@ export default function Page() {
         <tbody>
 
         {[1, 2, 3, 4, 5, 6, 76, 7, 8, 8].map((_, i) => (
-          <tr className={"h-10 hover:bg-neutral-300 hover:cursor-pointer"} key={i}>
+          <tr onClick={() => router.push(`/app/projects/<id>`)} className={"h-10 hover:bg-neutral-300 hover:cursor-pointer"} key={i}>
             <td className={"font-mono text-sm ps-3"}>Project 1</td>
             <td className={"font-mono text-sm"}><Image src={findFlagUrlByIso2Code("DE")} alt={""}  width={20} height={20} className={"inline-block me-2"}/> <span>Frankfurt</span> </td>
             <td className={"font-mono text-sm text-red-500"}>OFF</td>
             <td className={"font-mono text-sm text-center"}>1 GB</td>
             <td className={"font-mono text-sm "}>
               <div className={"flex justify-center items-center h-full grow"}>
-                <Link href={`/app/projects/123`} className={"text-blue-500 hover:underline"}>Settings</Link>
+                <Link onClick={(e) => e.stopPropagation()} href={`/app/projects/123/manage`} className={"text-blue-500 hover:underline"}>Settings</Link>
               </div>
             </td>
           </tr>
