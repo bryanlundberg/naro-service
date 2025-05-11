@@ -35,7 +35,7 @@ export default function Navbar() {
 
         <div className={"select-none"}>/</div>
 
-        <OrganizationSwitcher afterSelectPersonalUrl={(select) => `/app/projects`} afterSelectOrganizationUrl={(org) => `/app/projects`} />
+        <OrganizationSwitcher afterSelectPersonalUrl={() => `/app/projects`} afterSelectOrganizationUrl={() => `/app/projects`} />
 
         <div className={"select-none"}>/</div>
 

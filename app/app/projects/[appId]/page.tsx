@@ -7,8 +7,11 @@ import { useRouter } from "next/navigation";
 
 export default function Page() {
   const router = useRouter();
-  const listItem = (label: string) => {
-    return <div className={"p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap "}>{label}</div>;
+  const listItem = (label: string, key: number) => {
+    return <div
+      key={key}
+      className={"p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap "}
+    >{label}</div>;
   };
 
   return (
@@ -24,14 +27,14 @@ export default function Page() {
         <div className={"flex flex-col overflow-y-auto overflow-x-hidden border relative"}>
           <div className={"text-center p-3 border-b sticky inset-0 bg-black text-white"}>Collections</div>
           {[12, , 33, 3, 5, 5, 5, 5, 5, 5, 5, 5, 3, 3].map((_, i) => (
-            listItem("collection")
+            listItem("collection", i)
           ))}
         </div>
         <div className={"flex flex-col overflow-y-auto border"}>
           <div className={"text-center p-3 border-b sticky inset-0 bg-black text-white"}>Documents</div>
 
           {[13, 3, 3].map((_, i) => (
-            listItem("document")
+            listItem("document", i)
           ))}
         </div>
         <div className={"border"}>

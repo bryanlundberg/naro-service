@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Naro } from "@narodb/naro";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const dbs: Record<string, any> = {};
 
 export async function POST(request: Request, { params }: { params: Promise<{ appId: string }> }) {
