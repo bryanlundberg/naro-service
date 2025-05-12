@@ -4,9 +4,16 @@ import { Button } from "@/components/ui/button";
 import { MonitorIcon } from "lucide-react";
 import GearIcon from "next/dist/client/components/react-dev-overlay/ui/icons/gear-icon";
 import { useParams, useRouter } from "next/navigation";
+import useSWR from "swr";
+import { fetcher } from "@/lib/fetcher";
+import { useOrganization, useUser } from "@clerk/nextjs";
 
 export default function Page() {
-  const { projectId } = useParams()
+  const { projectId } = useParams();
+  const { user } = useUser();
+  const { organization } = useOrganization();
+
+  const orgId = organization ? organization.id : user?.id;
   const router = useRouter();
   const listItem = (label: string, key: number) => {
     return <div
@@ -14,6 +21,10 @@ export default function Page() {
       className={"p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap "}
     >{label}</div>;
   };
+
+  const { data, isLoading } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
+
+  console.log(data);
 
   return (
     <div>
@@ -45,7 +56,7 @@ export default function Page() {
       {
         "id": "1",
         "name": "test",
-        "description": "test",
+        "description": "test"
       },
       null,
       2
