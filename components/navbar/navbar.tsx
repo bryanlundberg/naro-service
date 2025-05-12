@@ -30,12 +30,21 @@ export default function Navbar() {
           onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
         />
 
-        <div className={"absolute left-20 hidden lg:block bottom-0 text-red-500 font-black text-xs -skew-6 select-none"}>Alpha</div>
-        <h3 className="font-bold text-lg font-mono hidden lg:block select-none">NaroBase</h3>
+        <div
+          onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
+          className={"absolute left-20 hidden lg:block bottom-0 text-red-500 font-black text-xs -skew-6 select-none hover:cursor-pointer"}
+        >Alpha
+        </div>
+        <h3
+          onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
+          className="font-bold text-lg font-mono hidden lg:block select-none hover:cursor-pointer">NaroBase</h3>
 
         <div className={"select-none"}>/</div>
 
-        <OrganizationSwitcher afterSelectPersonalUrl={() => `/app/projects`} afterSelectOrganizationUrl={() => `/app/projects`} />
+        <OrganizationSwitcher
+          afterSelectPersonalUrl={() => `/app/projects`}
+          afterSelectOrganizationUrl={() => `/app/projects`}
+        />
 
         <div className={"select-none"}>/</div>
 

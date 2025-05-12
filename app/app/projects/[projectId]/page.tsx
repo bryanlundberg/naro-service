@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MonitorIcon } from "lucide-react";
+import { MonitorIcon, PlusIcon } from "lucide-react";
 import GearIcon from "next/dist/client/components/react-dev-overlay/ui/icons/gear-icon";
 import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
@@ -38,13 +38,14 @@ export default function Page() {
       <div className={"w-full h-[600px] grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 text-neutral-500"}>
         <div className={"flex flex-col overflow-y-auto overflow-x-hidden border border-neutral-900 relative"}>
           <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>Collections</div>
+          <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}><PlusIcon size={12}/>Start collection</div>
           {data && Object.keys(data).map((label, i) => (
             <ListItem active={collectionId === label} label={label} key={i} onClick={() => setCollectionId(label)}/>
           ))}
         </div>
         <div className={"flex flex-col overflow-y-auto border-b border-t border-neutral-900"}>
-          <div className={"text-center p-3 sticky inset-0  bg-black text-white h-12 font-semibold"}>Documents</div>
-
+          <div className={"text-center p-3 sticky inset-0  bg-black text-white h-12 font-semibold"}>{data && collectionId ? collectionId : "Documents"}</div>
+          <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}><PlusIcon size={12}/>Start document</div>
           {data && collectionId && data[collectionId].map((item: any) => (
             <ListItem active={documentId === item.id} label={item.id} key={item.id} onClick={() => setDocumentId(item.id)}/>
           ))}
@@ -73,6 +74,5 @@ interface ListItemProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 const ListItem = ({ label, active, className, ...rest }: ListItemProps) => {
-  const [collectionId] = useQueryState("~C1");
   return <div {...rest} className={cn("p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap", className, active && "bg-neutral-200 text-neutral-900")}>{label}</div>;
 };
