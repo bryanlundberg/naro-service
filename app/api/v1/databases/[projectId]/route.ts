@@ -13,7 +13,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ proj
   if (!project) throw new Error("Not found project");
 
   const manager = dbManager.getDb(projectId);
-  console.log(manager);
 
-  return NextResponse.json({ ok: "ok" });
+  console.log("manager", manager);
+
+  await manager.add("users", { number: Math.floor(Math.random() * 100) });
+  await manager.add("tickets", { number: Math.floor(Math.random() * 100) });
+
+  return NextResponse.json(manager.getStructuredCollections());
 }

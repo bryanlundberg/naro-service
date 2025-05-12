@@ -21,6 +21,7 @@ export default function Page() {
   const { data: instance, isLoading } = useSWR(`/api/v1/projects/${orgId}/${projectId}`, fetcher);
 
   if (isLoading) return <Loader/>;
+  if (!instance) return <div className={"text-center text-lg font-semibold"}>No instance found</div>;
 
   return (
     <div className={"flex flex-col gap-2"}>

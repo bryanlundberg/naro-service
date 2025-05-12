@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Add dynamic project management and improve deployment UI&#10;&#10;Revised project API for dynamic orgId-based endpoints and adjusted deployment timing. Integrated a new &quot;Deploying&quot; component for better user feedback during builds and improved application metadata for branding. Enhanced project pages with conditional rendering, SWR data fetching, and cleaner code.">
-      <change afterPath="$PROJECT_DIR$/app/api/v1/databases/[projectId]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fetcher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fetcher.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/naro/db-manager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/naro/db-manager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-    </list>
+    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Add dynamic project management and improve API integration&#10;&#10;Refactored project APIs to support dynamic orgId-based endpoints and improved database handling with lazy initialization. Introduced SWR for efficient data fetching in project pages and optimized the UI with conditional rendering and loaders. Updated eslint and TypeScript rules, cleaned unused code in db-manager, and enhanced overall code quality." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747017841112</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add dynamic project management and improve API integration&#10;&#10;Refactored project APIs to support dynamic orgId-based endpoints and improved database handling with lazy initialization. Introduced SWR for efficient data fetching in project pages and optimized the UI with conditional rendering and loaders. Updated eslint and TypeScript rules, cleaned unused code in db-manager, and enhanced overall code quality.">
+      <option name="closed" value="true" />
+      <created>1747020533714</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747020533714</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +186,7 @@
     <MESSAGE value="Refactor project APIs and UI for dynamic management&#10;&#10;Replaced static project API routes with dynamic orgId-based endpoints and standardized database handling with lazy initialization. Improved project pages by integrating SWR for data fetching, adding loaders, and showing dynamic project details. Deprecated and commented out unused database manager methods for cleaner code." />
     <MESSAGE value="Ignore `/data` directory in `.gitignore`&#10;&#10;Added `/data` to `.gitignore` to prevent tracking local data files. This ensures cleaner project management and avoids sharing unnecessary files." />
     <MESSAGE value="Add dynamic project management and improve deployment UI&#10;&#10;Revised project API for dynamic orgId-based endpoints and adjusted deployment timing. Integrated a new &quot;Deploying&quot; component for better user feedback during builds and improved application metadata for branding. Enhanced project pages with conditional rendering, SWR data fetching, and cleaner code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dynamic project management and improve deployment UI&#10;&#10;Revised project API for dynamic orgId-based endpoints and adjusted deployment timing. Integrated a new &quot;Deploying&quot; component for better user feedback during builds and improved application metadata for branding. Enhanced project pages with conditional rendering, SWR data fetching, and cleaner code." />
+    <MESSAGE value="Add dynamic project management and improve API integration&#10;&#10;Refactored project APIs to support dynamic orgId-based endpoints and improved database handling with lazy initialization. Introduced SWR for efficient data fetching in project pages and optimized the UI with conditional rendering and loaders. Updated eslint and TypeScript rules, cleaned unused code in db-manager, and enhanced overall code quality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add dynamic project management and improve API integration&#10;&#10;Refactored project APIs to support dynamic orgId-based endpoints and improved database handling with lazy initialization. Introduced SWR for efficient data fetching in project pages and optimized the UI with conditional rendering and loaders. Updated eslint and TypeScript rules, cleaned unused code in db-manager, and enhanced overall code quality." />
   </component>
 </project>

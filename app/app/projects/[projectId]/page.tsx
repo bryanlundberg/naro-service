@@ -7,63 +7,72 @@ import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import { useOrganization, useUser } from "@clerk/nextjs";
+import { useQueryState } from "nuqs";
+import React from "react";
+import { cn } from "@/lib/utils";
+import Loader from "@/components/loader/loader";
 
 export default function Page() {
   const { projectId } = useParams();
+  const { data, isLoading } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
   const { user } = useUser();
   const { organization } = useOrganization();
 
   const orgId = organization ? organization.id : user?.id;
   const router = useRouter();
-  const listItem = (label: string, key: number) => {
-    return <div
-      key={key}
-      className={"p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap "}
-    >{label}</div>;
-  };
 
-  const { data, isLoading } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
+  const [collectionId, setCollectionId] = useQueryState("~C1");
+  const [documentId, setDocumentId] = useQueryState("~D1");
 
-  console.log(data);
+  if (isLoading) return <Loader />;
 
   return (
     <div>
       <div className={"flex justify-between items-center p-4 gap-4"}>
-        <h2 className={"text-5xl font-bold text-neutral-950 mb-5"}>Data</h2>
+        <h2 className={"text-5xl font-bold text-neutral-950 mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span></h2>
         <div className={"flex gap-2"}>
           <Button disabled><MonitorIcon/>Monitor</Button>
           <Button onClick={() => router.push(`/app/projects/${projectId}/manage`)}><GearIcon/>Settings</Button>
         </div>
       </div>
-      <div className={"border w-full h-96 grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 text-neutral-500"}>
-        <div className={"flex flex-col overflow-y-auto overflow-x-hidden border relative"}>
-          <div className={"text-center p-3 border-b sticky inset-0 bg-black text-white"}>Collections</div>
-          {[12, , 33, 3, 5, 5, 5, 5, 5, 5, 5, 5, 3, 3].map((_, i) => (
-            listItem("collection", i)
+      <div className={"w-full h-[600px] grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 text-neutral-500"}>
+        <div className={"flex flex-col overflow-y-auto overflow-x-hidden border border-neutral-900 relative"}>
+          <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>Collections</div>
+          {data && Object.keys(data).map((label, i) => (
+            <ListItem active={collectionId === label} label={label} key={i} onClick={() => setCollectionId(label)}/>
           ))}
         </div>
-        <div className={"flex flex-col overflow-y-auto border"}>
-          <div className={"text-center p-3 border-b sticky inset-0 bg-black text-white"}>Documents</div>
+        <div className={"flex flex-col overflow-y-auto border-b border-t border-neutral-900"}>
+          <div className={"text-center p-3 sticky inset-0  bg-black text-white h-12 font-semibold"}>Documents</div>
 
-          {[13, 3, 3].map((_, i) => (
-            listItem("document", i)
+          {data && collectionId && data[collectionId].map((item: any) => (
+            <ListItem active={documentId === item.id} label={item.id} key={item.id} onClick={() => setDocumentId(item.id)}/>
           ))}
         </div>
-        <div className={"border"}>
-          <div className={"text-center p-3 border-b sticky inset-0 bg-black text-white"}>Document</div>
-          <pre className={"break-words whitespace-pre-wrap overflow-x-auto text-sm"}>
-    {JSON.stringify(
-      {
-        "id": "1",
-        "name": "test",
-        "description": "test"
-      },
-      null,
-      2
-    )}
+        <div className={"border border-neutral-900"}>
+          <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>{data && collectionId && documentId ? documentId : null}</div>
+          <pre className={"break-words whitespace-pre-wrap overflow-x-auto text-sm p-2"}>
+    {data && collectionId && documentId
+      ? JSON.stringify(data[collectionId].find((item: any) => item.id === documentId), null, 2)
+      : ""}
   </pre>
         </div>
+      </div>
+
+      <div className="text-center text-sm text-neutral-500 mt-4">
+        The database visualizer is currently under development. Stay tuned for updates!
       </div>
     </div>
   );
 }
+
+interface ListItemProps extends React.HTMLProps<HTMLDivElement> {
+  label: string;
+  active: boolean;
+  className?: string;
+}
+
+const ListItem = ({ label, active, className, ...rest }: ListItemProps) => {
+  const [collectionId] = useQueryState("~C1");
+  return <div {...rest} className={cn("p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap", className, active && "bg-neutral-200 text-neutral-900")}>{label}</div>;
+};
