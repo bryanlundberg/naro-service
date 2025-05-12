@@ -9,19 +9,18 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import Loader from "@/components/loader/loader";
 import moment from "moment";
+import Deploying from "@/components/deploying/deploying";
 
 export default function Page() {
   const router = useRouter();
   const { user } = useUser();
   const { organization } = useOrganization();
-  const { projectId } = useParams()
+  const { projectId } = useParams();
 
   const orgId = organization ? organization.id : user?.id;
-  const { data: instance, isLoading, mutate } = useSWR(`/api/v1/projects/${orgId}/${projectId}`, fetcher);
+  const { data: instance, isLoading } = useSWR(`/api/v1/projects/${orgId}/${projectId}`, fetcher);
 
   if (isLoading) return <Loader/>;
-
-  console.log(instance);
 
   return (
     <div className={"flex flex-col gap-2"}>
@@ -30,49 +29,58 @@ export default function Page() {
           <h1 className={"font-black text-5xl"}>my-incredible-app</h1>
           <div>
             <div className={"font-mono text-sm mt-3"}>Application ID: {instance.applicationId}</div>
-            <div className={"font-mono text-sm"}>Created at: {instance.createdAt ? moment(instance.createdAt).format("MM-DD-YYYY") : "N/A"}</div>
+            <div className={"font-mono text-sm"}>Created
+              at: {instance.createdAt ? moment(instance.createdAt).format("MM-DD-YYYY") : "N/A"}</div>
           </div>
         </div>
-        <div className={"flex gap-2"}>
-          <Button variant={"destructive"} disabled>Destroy</Button>
-          <Button onClick={() => router.push("/app/projects/<id>")}><DatabaseIcon/>View data</Button>
-        </div>
+        {Date.now() > instance.finishBuild && (
+          <div className={"flex gap-2"}>
+            <Button variant={"destructive"} disabled>Destroy</Button>
+            <Button onClick={() => router.push(`/app/projects/${projectId}`)}><DatabaseIcon/>View data</Button>
+          </div>
+        )}
       </div>
 
       <div className={"w-full border-b "}></div>
 
-      <div className={"text-lg font-semibold"}>Naro URI</div>
-      <Input
-        className={"w-full max-w-[550px]"}
-        value={`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}
-        readOnly
-      />
+      {Date.now() < instance.finishBuild && <Deploying/>}
 
-      <div className={"text-lg font-semibold mt-5"}>How to connect?</div>
+      {Date.now() >= instance.finishBuild && (
+        <>
+          <div className={"text-lg font-semibold"}>Naro URI</div>
+          <Input
+            className={"w-full max-w-[550px]"}
+            value={`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}
+            readOnly
+          />
 
-      <div>Create a .env file in the root of your project</div>
-      <div className={"bg-gray-100 p-4 rounded text-sm"}>
+          <div className={"text-lg font-semibold mt-5"}>How to connect?</div>
+
+          <div>Create a .env file in the root of your project</div>
+          <div className={"bg-gray-100 p-4 rounded text-sm"}>
         <pre>
     <code>{`NARODB_URI=${`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}`}</code>
   </pre>
-      </div>
+          </div>
 
-      <div>Then in your code</div>
-      <div className={"bg-gray-100 p-4 rounded text-sm"}>
+          <div>Then in your code</div>
+          <div className={"bg-gray-100 p-4 rounded text-sm"}>
           <pre>
       <code>{`import { Naro } from "@narodb/naro";
 const URI = process.env.NARODB_URI;
 const db = new Naro("connect", { URI });`}</code>
     </pre>
-      </div>
-      <div>Now you can use the db object to interact with your NaroDB instance</div>
-      <div className={"bg-gray-100 p-4 rounded text-sm"}>
+          </div>
+          <div>Now you can use the db object to interact with your NaroDB instance</div>
+          <div className={"bg-gray-100 p-4 rounded text-sm"}>
         <pre>
     <code>{`const users = db.add("users", {
   name: "John Doe",
 });`}</code>
   </pre>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

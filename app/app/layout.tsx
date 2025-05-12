@@ -2,6 +2,12 @@ import Navbar from "@/components/navbar/navbar";
 import React from "react";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { ClerkLoaded } from "@clerk/nextjs";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Narobase | Console for NaroDB",
+  description: "Deploy your NaroDB instance in seconds",
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

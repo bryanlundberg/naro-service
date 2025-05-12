@@ -21,7 +21,7 @@ export default function Page() {
         <h2 className={"text-5xl font-bold text-neutral-950 mb-5"}>Data</h2>
         <div className={"flex gap-2"}>
           <Button disabled><MonitorIcon/>Monitor</Button>
-          <Button onClick={() => router.push("/app/projects/<id>/manage")}><GearIcon/>Settings</Button>
+          <Button onClick={() => router.push(`/app/projects/${projectId}/manage`)}><GearIcon/>Settings</Button>
         </div>
       </div>
       <div className={"border w-full h-96 grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 text-neutral-500"}>

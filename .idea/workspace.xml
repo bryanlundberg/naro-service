@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Ignore `/data` directory in `.gitignore`&#10;&#10;Added `/data` to `.gitignore` to prevent tracking local data files. This ensures cleaner project management and avoids sharing unnecessary files.">
+    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Refactor project APIs and UI for dynamic management&#10;&#10;Replaced static project API routes with dynamic orgId-based endpoints and standardized database handling with lazy initialization. Improved project pages by integrating SWR for data fetching, adding loaders, and showing dynamic project details. Deprecated and commented out unused database manager methods for cleaner code.">
+      <change afterPath="$PROJECT_DIR$/components/deploying/deploying.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/projects/[orgId]/[projectId]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/projects/[orgId]/[projectId]/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/v1/projects/[orgId]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/projects/[orgId]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/projects/route.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/projects/[projectId]/manage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/manage/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/projects/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/naro/db-manager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/naro/db-manager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/naro/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/naro/db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "register-instances",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -178,6 +175,7 @@
     <MESSAGE value="Refactor component props and improve code readability&#10;&#10;Added unique keys to list items in the Projects page for better React rendering. Simplified and streamlined imports in the layout file for consistency. Addressed TypeScript linting with a temporary rule adjustment in the API route." />
     <MESSAGE value="Refactor project management API and improve UI functionality.&#10;&#10;Replaced legacy API routes with new standardized endpoints for better project management. Enhanced the Projects page with SWR integration, a loader component, and dynamic project listing. Updated dependencies for improved performance and added utility files like `fetcher` and `db-manager`." />
     <MESSAGE value="Ignore `/data` directory in `.gitignore`&#10;&#10;Added `/data` to `.gitignore` to prevent tracking local data files. This ensures cleaner project management and avoids sharing unnecessary files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ignore `/data` directory in `.gitignore`&#10;&#10;Added `/data` to `.gitignore` to prevent tracking local data files. This ensures cleaner project management and avoids sharing unnecessary files." />
+    <MESSAGE value="Refactor project APIs and UI for dynamic management&#10;&#10;Replaced static project API routes with dynamic orgId-based endpoints and standardized database handling with lazy initialization. Improved project pages by integrating SWR for data fetching, adding loaders, and showing dynamic project details. Deprecated and commented out unused database manager methods for cleaner code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor project APIs and UI for dynamic management&#10;&#10;Replaced static project API routes with dynamic orgId-based endpoints and standardized database handling with lazy initialization. Improved project pages by integrating SWR for data fetching, adding loaders, and showing dynamic project details. Deprecated and commented out unused database manager methods for cleaner code." />
   </component>
 </project>

@@ -11,7 +11,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ org
   const newProject = await db.add(`projects`, {
     ...body,
     applicationId: `${Math.floor(Math.random() * 1e12)}`,
-    finishBuild: Date.now() + 30000
+    finishBuild: Date.now() + 20000
   });
 
   return NextResponse.json(newProject);
