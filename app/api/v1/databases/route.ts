@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { dbManager } from "@/naro/db-manager";
+import getDatabase from "@/naro/db";
 
 export async function POST(request: Request) {
   try {
@@ -9,6 +10,15 @@ export async function POST(request: Request) {
     if (!projectId || !method) {
       return NextResponse.json(
         { success: false, error: "Missing required fields: projectId or method" },
+        { status: 400 }
+      );
+    }
+
+    const db = getDatabase();
+    const project = await db.get(`projects/${projectId}`);
+    if (!project) {
+      return NextResponse.json(
+        { success: false, error: `Project with ID "${projectId}" does not exist` },
         { status: 400 }
       );
     }
@@ -27,6 +37,7 @@ export async function POST(request: Request) {
     const result = await database[method](...params);
     return NextResponse.json({ success: true, result });
   } catch (error: unknown) {
+    console.error("Error in API route:", error);
     return NextResponse.json(
       { success: false, error: error instanceof Error ? error.message : "Internal server error" },
       { status: 500 }

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons  &#10;&#10;This commit introduces &quot;Start collection&quot; and &quot;Start document&quot; buttons to improve user interaction and navigation in the project view. Additionally, minor adjustments were made to the navbar, including making labels clickable for better user experience.">
-      <change beforePath="$PROJECT_DIR$/app/app/projects/[projectId]/manage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/manage/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/projects/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar/navbar.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="Refactor Naro URI logic and adjust input width&#10;&#10;Updated the `naroUri` to use the current window location and a new format for consistency. Removed an unused `useRef` import and increased the maximum width of the input field for better UI flexibility." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,6 +89,7 @@
       <workItem from="1746932299237" duration="6107000" />
       <workItem from="1746960938405" duration="16722000" />
       <workItem from="1747052604445" duration="7090000" />
+      <workItem from="1747098318727" duration="3688000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Next.js project with ESLint and TypeScript setup&#10;&#10;Set up a new Next.js project with configuration files for TypeScript and ESLint, including necessary dependencies and scripts for development and production. IntelliJ IDEA project settings were also included. This commit provides the foundation for development with modern linting and type-checking support.">
       <option name="closed" value="true" />
@@ -191,7 +187,31 @@
       <option name="project" value="LOCAL" />
       <updated>1747057149920</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons&#10;&#10;Improve user interaction by introducing buttons for creating collections and documents in the project view. Enhanced navigation with clickable labels in the navbar and addressed minor UI adjustments for a better user experience.">
+      <option name="closed" value="true" />
+      <created>1747099201029</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747099201029</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add POST handler for database method execution&#10;&#10;Introduced a new POST endpoint to handle dynamic database method execution based on projectId, method, and parameters. Simplified the GET handler by removing unnecessary calls and debug logs. These changes improve API functionality and maintainability.">
+      <option name="closed" value="true" />
+      <created>1747100723425</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747100723425</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Refactor Naro URI logic and adjust input width&#10;&#10;Updated the `naroUri` to use the current window location and a new format for consistency. Removed an unused `useRef` import and increased the maximum width of the input field for better UI flexibility.">
+      <option name="closed" value="true" />
+      <created>1747102154638</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747102154638</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +231,9 @@
     <MESSAGE value="Add dynamic project management and improve API integration&#10;&#10;Refactored project APIs to support dynamic orgId-based endpoints and improved database handling with lazy initialization. Introduced SWR for efficient data fetching in project pages and optimized the UI with conditional rendering and loaders. Updated eslint and TypeScript rules, cleaned unused code in db-manager, and enhanced overall code quality." />
     <MESSAGE value="Integrate Nuqs adapter and improve project data handling&#10;&#10;Added the Nuqs adapter for better state management and routing. Enhanced project data visualization with dynamic collection/document handling, improved database API routes for structured responses, and introduced real-time indicators. Upgraded dependencies and refactored UI components for a cleaner, more interactive experience." />
     <MESSAGE value="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons  &#10;&#10;This commit introduces &quot;Start collection&quot; and &quot;Start document&quot; buttons to improve user interaction and navigation in the project view. Additionally, minor adjustments were made to the navbar, including making labels clickable for better user experience." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons  &#10;&#10;This commit introduces &quot;Start collection&quot; and &quot;Start document&quot; buttons to improve user interaction and navigation in the project view. Additionally, minor adjustments were made to the navbar, including making labels clickable for better user experience." />
+    <MESSAGE value="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons&#10;&#10;Improve user interaction by introducing buttons for creating collections and documents in the project view. Enhanced navigation with clickable labels in the navbar and addressed minor UI adjustments for a better user experience." />
+    <MESSAGE value="Add POST handler for database method execution&#10;&#10;Introduced a new POST endpoint to handle dynamic database method execution based on projectId, method, and parameters. Simplified the GET handler by removing unnecessary calls and debug logs. These changes improve API functionality and maintainability." />
+    <MESSAGE value="Refactor Naro URI logic and adjust input width&#10;&#10;Updated the `naroUri` to use the current window location and a new format for consistency. Removed an unused `useRef` import and increased the maximum width of the input field for better UI flexibility." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Naro URI logic and adjust input width&#10;&#10;Updated the `naroUri` to use the current window location and a new format for consistency. Removed an unused `useRef` import and increased the maximum width of the input field for better UI flexibility." />
   </component>
 </project>
