@@ -10,7 +10,7 @@ import { fetcher } from "@/lib/fetcher";
 import Loader from "@/components/loader/loader";
 import moment from "moment";
 import Deploying from "@/components/deploying/deploying";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const router = useRouter();
@@ -48,7 +48,7 @@ export default function Page() {
       </div>
     );
 
-  const naroUri = `narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`;
+  const naroUri = `${window.location.origin}/api/v1/databases;${orgId};${instance.applicationId}`;
 
   return (
     <div className={"flex flex-col gap-2"}>
@@ -90,7 +90,7 @@ export default function Page() {
         <>
           <div className={"text-lg font-semibold"}>Naro URI</div>
           <Input
-            className={"w-full max-w-[550px]"}
+            className={"w-full max-w-[650px]"}
             value={naroUri}
             readOnly
           />
