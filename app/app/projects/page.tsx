@@ -48,9 +48,10 @@ export default function Page() {
   const handleCreateProject = async (data: any) => {
     try {
       const orgId = organization ? organization.id : user?.id
-      await axios.post(`/api/v1/projects/${orgId}`, { ...data, orgId });
+      const response = await axios.post(`/api/v1/projects/${orgId}`, { ...data, orgId });
       await mutate();
       setIsModalOpen(false);
+      router.push(`/app/projects/${response.data.id}/manage`);
     } catch (e) {
       console.error(e);
     }
@@ -195,7 +196,7 @@ export default function Page() {
           </table>
         ) : (
           <div
-            className={"w-full border border-dashed h-96 flex flex-col justify-center hover:cursor-pointer items-center bg-neutral-50 rounded-md mt-5"}
+            className={"w-full border border-dashed h-96 flex flex-col justify-center hover:cursor-pointer items-center bg-neutral-50 rounded-md mt-5 border-neutral-900"}
             onClick={() => setIsModalOpen(true)}
           >
             <h1 className={"font-mono text-xl"}>No projects found</h1>

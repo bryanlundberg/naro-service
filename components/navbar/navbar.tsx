@@ -11,7 +11,6 @@ import {
 } from "@clerk/nextjs";
 import React from "react";
 import Image from "next/image";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
@@ -37,7 +36,8 @@ export default function Navbar() {
         </div>
         <h3
           onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
-          className="font-bold text-lg font-mono hidden lg:block select-none hover:cursor-pointer">NaroBase</h3>
+          className="font-bold text-lg font-mono hidden lg:block select-none hover:cursor-pointer"
+        >NaroBase</h3>
 
         <div className={"select-none"}>/</div>
 
@@ -45,18 +45,6 @@ export default function Navbar() {
           afterSelectPersonalUrl={() => `/app/projects`}
           afterSelectOrganizationUrl={() => `/app/projects`}
         />
-
-        <div className={"select-none"}>/</div>
-
-        <Select>
-          <SelectTrigger className="w-[180px] border-none hover:bg-gray-100 px-2 text-sm hover:cursor-pointer">
-            <SelectValue placeholder="Application"/>
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">6543654765</SelectItem>
-            <SelectItem value="dark">874247564</SelectItem>
-          </SelectContent>
-        </Select>
 
       </div>
       <div className="flex gap-4">

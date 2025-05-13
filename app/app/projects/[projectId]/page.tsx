@@ -14,22 +14,24 @@ import Loader from "@/components/loader/loader";
 
 export default function Page() {
   const { projectId } = useParams();
-  const { data, isLoading } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
   const { user } = useUser();
   const { organization } = useOrganization();
-
   const orgId = organization ? organization.id : user?.id;
+  const { data, isLoading: loadingDatabase } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
+  // const { data: project, isLoading: loadingProject } = useSWR(`/api/v1/projects/${orgId}`, fetcher);
+
   const router = useRouter();
 
   const [collectionId, setCollectionId] = useQueryState("~C1");
   const [documentId, setDocumentId] = useQueryState("~D1");
 
-  if (isLoading) return <Loader />;
+  if (loadingDatabase) return <Loader/>;
 
   return (
     <div>
       <div className={"flex justify-between items-center p-4 gap-4"}>
-        <h2 className={"text-5xl font-bold text-neutral-950 mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span></h2>
+        <h2 className={"text-5xl font-bold text-neutral-950 mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span>
+        </h2>
         <div className={"flex gap-2"}>
           <Button disabled><MonitorIcon/>Monitor</Button>
           <Button onClick={() => router.push(`/app/projects/${projectId}/manage`)}><GearIcon/>Settings</Button>
@@ -38,16 +40,30 @@ export default function Page() {
       <div className={"w-full h-[600px] grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 text-neutral-500"}>
         <div className={"flex flex-col overflow-y-auto overflow-x-hidden border border-neutral-900 relative"}>
           <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>Collections</div>
-          <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}><PlusIcon size={12}/>Start collection</div>
+          <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
+            <PlusIcon size={12}/>Start collection
+          </div>
           {data && Object.keys(data).map((label, i) => (
-            <ListItem active={collectionId === label} label={label} key={i} onClick={() => setCollectionId(label)}/>
+            <ListItem
+              active={collectionId === label} label={label} key={i} onClick={async () => {
+              await setCollectionId(label);
+              await setDocumentId(null);
+            }}
+            />
           ))}
         </div>
         <div className={"flex flex-col overflow-y-auto border-b border-t border-neutral-900"}>
           <div className={"text-center p-3 sticky inset-0  bg-black text-white h-12 font-semibold"}>{data && collectionId ? collectionId : "Documents"}</div>
-          <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}><PlusIcon size={12}/>Start document</div>
+          <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
+            <PlusIcon size={12}/>Start document
+          </div>
           {data && collectionId && data[collectionId].map((item: any) => (
-            <ListItem active={documentId === item.id} label={item.id} key={item.id} onClick={() => setDocumentId(item.id)}/>
+            <ListItem
+              active={documentId === item.id}
+              label={item.id}
+              key={item.id}
+              onClick={() => setDocumentId(item.id)}
+            />
           ))}
         </div>
         <div className={"border border-neutral-900"}>

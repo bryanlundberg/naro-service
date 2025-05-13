@@ -10,6 +10,7 @@ import { fetcher } from "@/lib/fetcher";
 import Loader from "@/components/loader/loader";
 import moment from "moment";
 import Deploying from "@/components/deploying/deploying";
+import { useEffect, useRef, useState } from "react";
 
 export default function Page() {
   const router = useRouter();
@@ -18,40 +19,79 @@ export default function Page() {
   const { projectId } = useParams();
 
   const orgId = organization ? organization.id : user?.id;
-  const { data: instance, isLoading } = useSWR(`/api/v1/projects/${orgId}/${projectId}`, fetcher);
+  const { data: instance, isLoading } = useSWR(
+    orgId && projectId ? `/api/v1/projects/${orgId}/${projectId}` : null,
+    fetcher
+  );
+
+  const [isDeploying, setIsDeploying] = useState(false);
+
+  useEffect(() => {
+    if (instance?.finishBuild) {
+      setIsDeploying(Date.now() < instance.finishBuild);
+      const interval = setInterval(() => {
+        if (Date.now() >= instance.finishBuild) {
+          setIsDeploying(false);
+          clearInterval(interval);
+        }
+        console.log("Checking if deploying is finished...");
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [instance?.finishBuild]);
 
   if (isLoading) return <Loader/>;
-  if (!instance) return <div className={"text-center text-lg font-semibold"}>No instance found</div>;
+  if (!instance)
+    return (
+      <div className={"text-center text-lg font-semibold"}>
+        No instance found
+      </div>
+    );
+
+  const naroUri = `narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`;
 
   return (
     <div className={"flex flex-col gap-2"}>
       <div className={"flex justify-between items-center p-4 gap-4"}>
         <div>
-          <h1 className={"font-black text-5xl"}>my-incredible-app</h1>
+          <h1 className={"font-black text-5xl"}>{instance.projectName || "Untitled Project"}</h1>
           <div>
-            <div className={"font-mono text-sm mt-3"}>Application ID: {instance.applicationId}</div>
-            <div className={"font-mono text-sm"}>Created
-              at: {instance.createdAt ? moment(instance.createdAt).format("MM-DD-YYYY") : "N/A"}</div>
+            <div className={"font-mono text-sm mt-3"}>
+              Application ID: {instance.applicationId || "N/A"}
+            </div>
+            <div className={"font-mono text-sm"}>
+              Created at:{" "}
+              {instance.createdAt
+                ? moment(instance.createdAt).format("MM-DD-YYYY")
+                : "N/A"}
+            </div>
           </div>
         </div>
-        {Date.now() > instance.finishBuild && (
+        {instance.finishBuild && Date.now() > instance.finishBuild && (
           <div className={"flex gap-2"}>
-            <Button variant={"destructive"} disabled>Destroy</Button>
-            <Button onClick={() => router.push(`/app/projects/${projectId}`)}><DatabaseIcon/>View data</Button>
+            <Button variant={"destructive"} disabled>
+              Destroy
+            </Button>
+            <Button
+              onClick={() => router.push(`/app/projects/${projectId}`)}
+            >
+              <DatabaseIcon/>
+              View data
+            </Button>
           </div>
         )}
       </div>
 
       <div className={"w-full border-b "}></div>
 
-      {Date.now() < instance.finishBuild && <Deploying/>}
+      {isDeploying && <Deploying/>}
 
-      {Date.now() >= instance.finishBuild && (
+      {!isDeploying && (
         <>
           <div className={"text-lg font-semibold"}>Naro URI</div>
           <Input
             className={"w-full max-w-[550px]"}
-            value={`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}
+            value={naroUri}
             readOnly
           />
 
@@ -59,26 +99,26 @@ export default function Page() {
 
           <div>Create a .env file in the root of your project</div>
           <div className={"bg-gray-100 p-4 rounded text-sm"}>
-        <pre>
-    <code>{`NARODB_URI=${`narodb://${orgId}:naroapi.com:4010/${instance.applicationId}`}`}</code>
-  </pre>
+            <pre>
+              <code>{`NARODB_URI=${naroUri}`}</code>
+            </pre>
           </div>
 
           <div>Then in your code</div>
           <div className={"bg-gray-100 p-4 rounded text-sm"}>
-          <pre>
-      <code>{`import { Naro } from "@narodb/naro";
+            <pre>
+              <code>{`import { Naro } from "@narodb/naro";
 const URI = process.env.NARODB_URI;
 const db = new Naro("connect", { URI });`}</code>
-    </pre>
+            </pre>
           </div>
           <div>Now you can use the db object to interact with your NaroDB instance</div>
           <div className={"bg-gray-100 p-4 rounded text-sm"}>
-        <pre>
-    <code>{`const users = db.add("users", {
+            <pre>
+              <code>{`const users = db.add("users", {
   name: "John Doe",
 });`}</code>
-  </pre>
+            </pre>
           </div>
         </>
       )}
