@@ -12,8 +12,8 @@ importers:
         specifier: ^6.19.2
         version: 6.19.2(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@narodb/naro':
-        specifier: ^0.0.7
-        version: 0.0.7
+        specifier: ^0.1.0
+        version: 0.1.0
       '@radix-ui/react-dialog':
         specifier: ^1.1.13
         version: 1.1.13(@types/react-dom@19.1.3(@types/react@19.1.3))(@types/react@19.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -380,8 +380,8 @@ packages:
   '@napi-rs/wasm-runtime@0.2.9':
     resolution: {integrity: sha512-OKRBiajrrxB9ATokgEQoG87Z25c67pCpYcCwmXYX8PBftC9pBfN18gnm/fh1wurSLEKIAt+QRFLFCQISrb66Jg==}
 
-  '@narodb/naro@0.0.7':
-    resolution: {integrity: sha512-3GfX3geJSBH4ds0mM02cD69Xr8RPqP+BN/MsOusbIKIRkRe8GXMU5ejzHigD0Db21O4g17RWkdhEdiQtqFRxgQ==}
+  '@narodb/naro@0.1.0':
+    resolution: {integrity: sha512-xMwnNOTP4b9SWANofOIL0G9Bf/rfHENfisgokM1mpFBz5IOG85c2gT3snUz4Nib4axU9idLL/PWE3jMS9VUOww==}
     engines: {node: '>=18.0.0'}
 
   '@next/env@15.3.2':
@@ -2864,11 +2864,12 @@ snapshots:
       '@tybys/wasm-util': 0.9.0
     optional: true
 
-  '@narodb/naro@0.0.7':
+  '@narodb/naro@0.1.0':
     dependencies:
       fs-jetpack: 5.1.0
       lodash: 4.17.21
       notepack.io: 3.0.1
+      redaxios: 0.5.1
       typescript: 5.8.3
 
   '@next/env@15.3.2': {}
