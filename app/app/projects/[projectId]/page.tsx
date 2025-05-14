@@ -65,14 +65,16 @@ export default function Page() {
         </div>
         <div className={"flex flex-col overflow-y-auto border-b border-t border-neutral-900"}>
           <div className={"text-center p-3 sticky inset-0  bg-black text-white h-12 font-semibold"}>{data && collectionId ? collectionId : "Documents"}</div>
-          <Dialog open={isOpenDocumentModal} onOpenChange={setIsOpenDocumentModal}>
-            <DialogTrigger>
-              <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
-                <PlusIcon size={12}/>Start document
-              </div>
-            </DialogTrigger>
-            <CreateDocumentModal mutate={mutate} handleClose={() => setIsOpenDocumentModal(false)}/>
-          </Dialog>
+          {data && collectionId && (
+            <Dialog open={isOpenDocumentModal} onOpenChange={setIsOpenDocumentModal}>
+              <DialogTrigger>
+                <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
+                  <PlusIcon size={12}/>Start document
+                </div>
+              </DialogTrigger>
+              <CreateDocumentModal mutate={mutate} handleClose={() => setIsOpenDocumentModal(false)}/>
+            </Dialog>
+          )}
           {data && collectionId && data[collectionId].map((item: any) => (
             <ListItem
               active={documentId === item.id}

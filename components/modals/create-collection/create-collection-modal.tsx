@@ -43,6 +43,10 @@ export default function CreateCollectionModal({ mutate, handleClose }: CreateCol
 
       mutate();
       handleClose();
+
+      setTimeout(() => {
+        setValue("collection-name", "");
+      }, 600);
     } catch (e) {
       console.log(e);
     }
