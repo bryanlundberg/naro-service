@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MonitorIcon, PlusIcon } from "lucide-react";
+import { MinusCircleIcon, MonitorIcon, PlusCircleIcon, PlusIcon } from "lucide-react";
 import GearIcon from "next/dist/client/components/react-dev-overlay/ui/icons/gear-icon";
 import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
@@ -48,7 +48,7 @@ export default function Page() {
           <Dialog open={isOpenCollectionModal} onOpenChange={setIsOpenCollectionModal}>
             <DialogTrigger>
               <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
-                <PlusIcon size={12}/>Start collection
+                <PlusCircleIcon size={12}/>Start collection
               </div>
             </DialogTrigger>
             <CreateCollectionModal mutate={mutate} handleClose={() => setIsOpenCollectionModal(false)}/>
@@ -69,7 +69,7 @@ export default function Page() {
             <Dialog open={isOpenDocumentModal} onOpenChange={setIsOpenDocumentModal}>
               <DialogTrigger>
                 <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
-                  <PlusIcon size={12}/>Start document
+                  <PlusCircleIcon size={12}/>Start document
                 </div>
               </DialogTrigger>
               <CreateDocumentModal mutate={mutate} handleClose={() => setIsOpenDocumentModal(false)}/>
@@ -108,5 +108,14 @@ interface ListItemProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 const ListItem = ({ label, active, className, ...rest }: ListItemProps) => {
-  return <div {...rest} className={cn("p-2 hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap", className, active && "bg-neutral-200 text-neutral-900")}>{label}</div>;
+  return <div {...rest} className={cn("p-2 flex items-center justify-between hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap group h-12", className, active && "bg-neutral-200 text-neutral-900")}>
+    {label}
+    <Button
+      onClick={(e) => e.stopPropagation()}
+      variant={"secondary"}
+      size={"icon"}
+      className={"hover:bg-neutral-300 bg-transparent shadow-none hidden group-hover:flex"}
+    ><MinusCircleIcon/>
+    </Button>
+  </div>;
 };
