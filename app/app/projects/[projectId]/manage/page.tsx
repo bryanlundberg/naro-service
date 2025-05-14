@@ -26,6 +26,24 @@ export default function Page() {
 
   const [isDeploying, setIsDeploying] = useState(false);
 
+  const handleDeleteInstance = async () => {
+    const response = await fetch(`/api/v1/projects/${orgId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: instance.id,
+      }),
+    });
+
+    if (response.ok) {
+      router.push("/app/projects");
+    } else {
+      console.error("Failed to delete the instance");
+    }
+  }
+
   useEffect(() => {
     if (instance?.finishBuild) {
       setIsDeploying(Date.now() < instance.finishBuild);
@@ -69,7 +87,7 @@ export default function Page() {
         </div>
         {instance.finishBuild && Date.now() > instance.finishBuild && (
           <div className={"flex gap-2"}>
-            <Button variant={"destructive"} disabled>
+            <Button variant={"destructive"} onClick={handleDeleteInstance}>
               Destroy
             </Button>
             <Button

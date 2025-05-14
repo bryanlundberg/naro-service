@@ -68,7 +68,7 @@ export default function CreateCollectionModal({ mutate, handleClose }: CreateCol
         </div>
         <div>
           <Label htmlFor="collection-name" className="text-sm font-medium text-gray-700">Collection ID</Label>
-          <Input {...register("collection-name", {
+          <Input autoComplete={"off"} {...register("collection-name", {
             required: "Collection ID is required"
           })}/>
           {errors["collection-name"] &&
