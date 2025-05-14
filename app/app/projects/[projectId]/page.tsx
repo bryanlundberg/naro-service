@@ -8,7 +8,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import { useQueryState } from "nuqs";
-import React from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Loader from "@/components/loader/loader";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
@@ -29,6 +29,61 @@ export default function Page() {
 
   const [collectionId, setCollectionId] = useQueryState("~C1");
   const [documentId, setDocumentId] = useQueryState("~D1");
+
+  const handleDeleteCollection = async (collectionKey: string) => {
+    try {
+      await fetch(`/api/v1/databases`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          projectId,
+          method: "clear",
+          params: [collectionKey]
+        })
+      });
+
+      await mutate();
+    } catch (e) {
+      console.error("Failed to delete the collection", e);
+    }
+  };
+
+  const handleDeleteDocument = async (collectionKey: string, documentId: string) => {
+    try {
+      await fetch(`/api/v1/databases`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          projectId,
+          method: "delete",
+          params: [`${collectionKey}/${documentId}`]
+        })
+      });
+
+      await mutate();
+    } catch (e) {
+      console.error("Failed to delete the document", e);
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      if (collectionId && !data[collectionId]) {
+        setCollectionId(null);
+        setDocumentId(null);
+      } else if (
+        collectionId &&
+        documentId &&
+        (!data[collectionId] || !data[collectionId].some((item: any) => item.id === documentId))
+      ) {
+        setDocumentId(null);
+      }
+    }
+  }, [data, collectionId, documentId, setCollectionId, setDocumentId]);
 
   if (loadingDatabase) return <Loader/>;
 
@@ -56,6 +111,7 @@ export default function Page() {
 
           {data && Object.keys(data).map((label, i) => (
             <ListItem
+              onClickSecondary={() => handleDeleteCollection(label)}
               active={collectionId === label} label={label} key={i} onClick={async () => {
               await setCollectionId(label);
               await setDocumentId(null);
@@ -75,8 +131,9 @@ export default function Page() {
               <CreateDocumentModal mutate={mutate} handleClose={() => setIsOpenDocumentModal(false)}/>
             </Dialog>
           )}
-          {data && collectionId && data[collectionId].map((item: any) => (
+          {data && collectionId && Array.isArray(data[collectionId]) && data[collectionId].map((item: any) => (
             <ListItem
+              onClickSecondary={() => handleDeleteDocument(collectionId, item.id)}
               active={documentId === item.id}
               label={item.id}
               key={item.id}
@@ -88,7 +145,7 @@ export default function Page() {
           <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>{data && collectionId && documentId ? documentId : null}</div>
           <pre className={"break-words whitespace-pre-wrap overflow-x-auto text-sm p-2"}>
     {data && collectionId && documentId
-      ? JSON.stringify(data[collectionId].find((item: any) => item.id === documentId), null, 2)
+      ? JSON.stringify(data[collectionId]?.find((item: any) => item.id === documentId), null, 2)
       : ""}
   </pre>
         </div>
@@ -105,13 +162,17 @@ interface ListItemProps extends React.HTMLProps<HTMLDivElement> {
   label: string;
   active: boolean;
   className?: string;
+  onClickSecondary?: () => void;
 }
 
-const ListItem = ({ label, active, className, ...rest }: ListItemProps) => {
+const ListItem = ({ label, active, className, onClickSecondary, ...rest }: ListItemProps) => {
   return <div {...rest} className={cn("p-2 flex items-center justify-between hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap group h-12", className, active && "bg-neutral-200 text-neutral-900")}>
     {label}
     <Button
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClickSecondary?.();
+      }}
       variant={"secondary"}
       size={"icon"}
       className={"hover:bg-neutral-300 bg-transparent shadow-none hidden group-hover:flex"}
