@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     // @ts-ignore
     const result = await database[method](...params);
-    return NextResponse.json({ success: true, result });
+    return NextResponse.json({ ...result });
   } catch (error: unknown) {
     console.error("Error in API route:", error);
     return NextResponse.json(
