@@ -11,5 +11,5 @@ export async function GET(request: Request, { params }: { params: Promise<{ proj
   if (!project) throw new Error("Not found project");
 
   const manager = dbManager.getDb(projectId);
-  return NextResponse.json(manager.getStructuredCollections());
+  return NextResponse.json(await manager.getStructuredCollections());
 }
