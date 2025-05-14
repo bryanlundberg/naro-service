@@ -48,7 +48,7 @@ export default function Page() {
       </div>
     );
 
-  const naroUri = `${window.location.origin}/api/v1/databases;${orgId};${instance.applicationId}`;
+  const naroUri = `${window.location.origin}/api/v1/databases;${orgId};${instance.id}`;
 
   return (
     <div className={"flex flex-col gap-2"}>
