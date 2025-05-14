@@ -1,12 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MinusCircleIcon, MonitorIcon, PlusCircleIcon, PlusIcon } from "lucide-react";
+import { MinusCircleIcon, MonitorIcon, PlusCircleIcon } from "lucide-react";
 import GearIcon from "next/dist/client/components/react-dev-overlay/ui/icons/gear-icon";
 import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
-import { useOrganization, useUser } from "@clerk/nextjs";
 import { useQueryState } from "nuqs";
 import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -17,9 +16,6 @@ import CreateDocumentModal from "@/components/modals/create-document/create-docu
 
 export default function Page() {
   const { projectId } = useParams();
-  const { user } = useUser();
-  const { organization } = useOrganization();
-  const orgId = organization ? organization.id : user?.id;
   const { data, isLoading: loadingDatabase, mutate } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
 
   const [isOpenCollectionModal, setIsOpenCollectionModal] = React.useState(false);

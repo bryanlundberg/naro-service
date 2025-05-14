@@ -120,9 +120,11 @@ export default function CreateDocumentModal({ mutate, handleClose }: CreateDocum
 
                 {field.type === "boolean" ? (
                   <Controller
-                    render={({ field: { onChange, value } }) => (
-                      <Select value={value} onValueChange={(newValue) => setValue(`fields.${index}.value`, newValue)
-                      }>
+                    render={({ field: { value } }) => (
+                      <Select
+                        value={value} onValueChange={(newValue) => setValue(`fields.${index}.value`, newValue)
+                      }
+                      >
                         <SelectTrigger className={"flex-1"}>
                           <SelectValue/>
                         </SelectTrigger>
