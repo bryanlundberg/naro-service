@@ -163,7 +163,7 @@ export default function Page() {
             {orderBy(projects, "createdAt", "desc").map((project) => (
               <tr
                 onClick={() => router.push(`/app/projects/${project.id}`)}
-                className={"h-10 hover:bg-neutral-300 hover:cursor-pointer"}
+                className={"h-10 hover:bg-neutral-200 hover:cursor-pointer dark:hover:bg-zinc-800 transition duration-100"}
                 key={project.id}
               >
                 <td className={"font-mono text-sm ps-3"}>{project.projectName}</td>
@@ -196,9 +196,10 @@ export default function Page() {
           </table>
         ) : (
           <div
-            className={"w-full border border-dashed h-96 flex flex-col justify-center hover:cursor-pointer items-center bg-neutral-50 rounded-md mt-5 border-neutral-900"}
+            className={"w-full border border-dashed h-96 flex flex-col justify-center hover:cursor-pointer items-center hover:bg-neutral-100 bg-neutral-50 dark:hover:bg-zinc-950 transition duration-300 dark:bg-background dark:border-foreground rounded-md mt-5 border-neutral-900"}
             onClick={() => setIsModalOpen(true)}
           >
+            <Image src={"/folder.png"} alt={""} width={100} height={100} className={"size-20 dark:invert"}/>
             <h1 className={"font-mono text-xl"}>No projects found</h1>
             <p className={"font-mono text-sm mt-3"}>Create a new project to get started.</p>
           </div>

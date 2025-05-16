@@ -16,13 +16,10 @@ import CreateDocumentModal from "@/components/modals/create-document/create-docu
 
 export default function Page() {
   const { projectId } = useParams();
+  const router = useRouter();
   const { data, isLoading: loadingDatabase, mutate } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
-
   const [isOpenCollectionModal, setIsOpenCollectionModal] = React.useState(false);
   const [isOpenDocumentModal, setIsOpenDocumentModal] = React.useState(false);
-
-  const router = useRouter();
-
   const [collectionId, setCollectionId] = useQueryState("~C1");
   const [documentId, setDocumentId] = useQueryState("~D1");
 
@@ -86,19 +83,19 @@ export default function Page() {
   return (
     <div>
       <div className={"flex justify-between items-center p-4 gap-4"}>
-        <h2 className={"text-5xl font-bold text-neutral-950 mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span>
+        <h2 className={"text-5xl font-bold mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span>
         </h2>
         <div className={"flex gap-2"}>
           <Button disabled><MonitorIcon/>Monitor</Button>
           <Button onClick={() => router.push(`/app/projects/${projectId}/manage`)}><GearIcon/>Settings</Button>
         </div>
       </div>
-      <div className={"w-full h-[600px] grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 text-neutral-500"}>
+      <div className={"w-full h-[600px] grid grid-cols-[1fr_1fr_2fr] bg-neutral-50 dark:bg-neutral-950 text-neutral-500"}>
         <div className={"flex flex-col overflow-y-auto overflow-x-hidden border border-neutral-900 relative"}>
           <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>Collections</div>
           <Dialog open={isOpenCollectionModal} onOpenChange={setIsOpenCollectionModal}>
             <DialogTrigger>
-              <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
+              <div className={"p-2 text-blue-400 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50 dark:hover:bg-blue-300/10"}>
                 <PlusCircleIcon size={12}/>Start collection
               </div>
             </DialogTrigger>
@@ -120,7 +117,7 @@ export default function Page() {
           {data && collectionId && (
             <Dialog open={isOpenDocumentModal} onOpenChange={setIsOpenDocumentModal}>
               <DialogTrigger>
-                <div className={"p-2 text-blue-600 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50"}>
+                <div className={"p-2 text-blue-400 font-semibold hover:cursor-pointer flex gap-1 items-center hover:bg-blue-50 dark:hover:bg-blue-300/10"}>
                   <PlusCircleIcon size={12}/>Start document
                 </div>
               </DialogTrigger>
@@ -162,7 +159,7 @@ interface ListItemProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 const ListItem = ({ label, active, className, onClickSecondary, ...rest }: ListItemProps) => {
-  return <div {...rest} className={cn("p-2 flex items-center justify-between hover:bg-neutral-200 hover:text-neutral-950 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap group h-12", className, active && "bg-neutral-200 text-neutral-900")}>
+  return <div {...rest} className={cn("p-2 flex items-center justify-between hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-50  hover:text-zinc-950 dark:hover:text-zinc-50 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap group h-12", className, active && "bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-50")}>
     {label}
     <Button
       onClick={(e) => {
@@ -171,7 +168,7 @@ const ListItem = ({ label, active, className, onClickSecondary, ...rest }: ListI
       }}
       variant={"secondary"}
       size={"icon"}
-      className={"hover:bg-neutral-300 bg-transparent shadow-none hidden group-hover:flex"}
+      className={"hover:bg-zinc-300 dark:hover:bg-zinc-600 bg-transparent shadow-none hidden group-hover:flex"}
     ><MinusCircleIcon/>
     </Button>
   </div>;

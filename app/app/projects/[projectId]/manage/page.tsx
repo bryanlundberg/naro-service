@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DatabaseIcon } from "lucide-react";
+import { CopyIcon, DatabaseIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
@@ -11,6 +11,7 @@ import Loader from "@/components/loader/loader";
 import moment from "moment";
 import Deploying from "@/components/deploying/deploying";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function Page() {
   const router = useRouter();
@@ -42,6 +43,11 @@ export default function Page() {
     } else {
       console.error("Failed to delete the instance");
     }
+  }
+
+  const handleCopyUri = () => {
+    navigator.clipboard.writeText(naroUri);
+    toast("Naro URI copied to clipboard");
   }
 
   useEffect(() => {
@@ -107,23 +113,28 @@ export default function Page() {
       {!isDeploying && (
         <>
           <div className={"text-lg font-semibold"}>Naro URI</div>
-          <Input
-            className={"w-full max-w-[650px]"}
-            value={naroUri}
-            readOnly
-          />
+          <div className={"flex gap-2 items-center"}>
+            <Input
+              className={"w-full max-w-[650px]"}
+              value={naroUri}
+              readOnly
+            />
+            <Button size={"icon"} variant={"outline"} onClick={handleCopyUri}>
+              <CopyIcon/>
+            </Button>
+          </div>
 
           <div className={"text-lg font-semibold mt-5"}>How to connect?</div>
 
           <div>Create a .env file in the root of your project</div>
-          <div className={"bg-gray-100 p-4 rounded text-sm"}>
+          <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
             <pre>
               <code>{`NARODB_URI=${naroUri}`}</code>
             </pre>
           </div>
 
           <div>Then in your code</div>
-          <div className={"bg-gray-100 p-4 rounded text-sm"}>
+          <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
             <pre>
               <code>{`import { Naro } from "@narodb/naro";
 const URI = process.env.NARODB_URI;
@@ -131,7 +142,7 @@ const db = new Naro("connect", { URI });`}</code>
             </pre>
           </div>
           <div>Now you can use the db object to interact with your NaroDB instance</div>
-          <div className={"bg-gray-100 p-4 rounded text-sm"}>
+          <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
             <pre>
               <code>{`const users = db.add("users", {
   name: "John Doe",

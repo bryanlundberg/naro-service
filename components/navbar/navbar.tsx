@@ -13,6 +13,8 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle/mode-toggle";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   const { user } = useUser();
@@ -26,10 +28,9 @@ export default function Navbar() {
           alt="Logo"
           width={60}
           height={60}
-          className="size-9 object-cover filter grayscale hover:cursor-pointer"
+          className="size-9 object-cover filter grayscale hover:cursor-pointer dark:invert"
           onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
         />
-
         <div
           onClick={user ? () => router.push("/app/projects") : () => router.push("/")}
           className={"absolute left-20 hidden lg:block bottom-0 text-red-500 font-black text-xs -skew-6 select-none hover:cursor-pointer"}
@@ -42,13 +43,15 @@ export default function Navbar() {
 
         <div className={"select-none"}>/</div>
 
-        <OrganizationSwitcher
-          afterSelectPersonalUrl={() => `/app/projects`}
-          afterSelectOrganizationUrl={() => `/app/projects`}
-        />
+        <Button variant={"outline"} className={"p-0 h-fit w-fit"} size={"icon"}>
+          <OrganizationSwitcher
+            afterSelectPersonalUrl={() => `/app/projects`}
+            afterSelectOrganizationUrl={() => `/app/projects`}
+          />
+        </Button>
 
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <SignedOut>
           <SignInButton/>
           <SignUpButton/>
@@ -56,7 +59,10 @@ export default function Navbar() {
         <SignedIn>
           <Link href={"https://narodb.netlify.app/"} target={"_blank"} className={"hover:opacity-80"}>Docs</Link>
           <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
-          <UserButton/>
+          <ModeToggle/>
+          <Button size={"icon"} variant={"outline"}>
+            <UserButton/>
+          </Button>
         </SignedIn>
       </div>
     </header>

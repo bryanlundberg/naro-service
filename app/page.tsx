@@ -34,7 +34,7 @@ export default function Home() {
         <div className={"absolute z-10 top-0 left-0 font-mono h-dvh w-full overflow-auto"}>
           <header className="flex justify-between items-center p-1 backdrop-blur-lg border-b sticky top-0 left-0 z-20 h-20 px-4">
             <div className={"flex items-center space-x-2"}>
-              <Image src={"/logo_large_dark.svg"} alt={""} width={100} height={100} className="size-10"/>
+              <Image src={"/logo_large_dark.svg"} alt={""} width={100} height={100} className="size-10 dark:invert"/>
               <h1 className="text-lg md:text-xl lg:text-2xl font-semibold hidden sm:block">Narobase</h1>
             </div>
             <div className={"flex items-center space-x-4"}>
