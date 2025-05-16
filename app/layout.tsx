@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import React from "react";
 import { ThemeProvider } from "@/components/theme-provider";
-import { dark, neobrutalism } from '@clerk/themes'
+import { neobrutalism } from '@clerk/themes'
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({

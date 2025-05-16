@@ -18,7 +18,7 @@ import { toast } from "sonner";
 export default function Page() {
   const { projectId } = useParams();
   const router = useRouter();
-  const { data, isLoading: loadingDatabase, mutate } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
+  const { data, isLoading: loadingDatabase, mutate, error } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
   const [isOpenCollectionModal, setIsOpenCollectionModal] = React.useState(false);
   const [isOpenDocumentModal, setIsOpenDocumentModal] = React.useState(false);
   const [collectionId, setCollectionId] = useQueryState("~C1");
@@ -78,6 +78,10 @@ export default function Page() {
       }
     }
   }, [data, collectionId, documentId, setCollectionId, setDocumentId]);
+
+  useEffect(() => {
+    if (error) return router.push("/app/projects");
+  }, [error, router]);
 
   if (loadingDatabase) return <Loader/>;
 

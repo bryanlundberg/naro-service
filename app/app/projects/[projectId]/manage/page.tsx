@@ -20,7 +20,7 @@ export default function Page() {
   const { projectId } = useParams();
 
   const orgId = organization ? organization.id : user?.id;
-  const { data: instance, isLoading } = useSWR(
+  const { data: instance, error, isLoading } = useSWR(
     orgId && projectId ? `/api/v1/projects/${orgId}/${projectId}` : null,
     fetcher
   );
@@ -64,13 +64,12 @@ export default function Page() {
     }
   }, [instance?.finishBuild]);
 
+  useEffect(() => {
+    if (error) return router.push("/app/projects");
+  }, [isLoading, error, router]);
+
   if (isLoading) return <Loader/>;
-  if (!instance)
-    return (
-      <div className={"text-center text-lg font-semibold"}>
-        No instance found
-      </div>
-    );
+  if (!instance) return <></>;
 
   const naroUri = `${window.location.origin}/api/v1/databases;${orgId};${instance.id}`;
 
