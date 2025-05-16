@@ -79,7 +79,7 @@ export default function Page() {
               <form className={"space-y-2 pt-5"} onSubmit={handleSubmit(handleCreateProject)}>
 
                 <Label htmlFor="email">Project name</Label>
-                <Input {...register("projectName", {
+                <Input autoComplete={"off"} {...register("projectName", {
                   required: "Project name is required",
                   minLength: {
                     value: 3,
@@ -120,15 +120,15 @@ export default function Page() {
                       <SelectContent>
                         <SelectItem value="DE">
                           <Image src={deFlag} alt={deFlag} width={20} height={20} className={"inline-block me-2"}/>
-                          <span className={"font-mono"}>Frankfurt (+- 503ms)</span>
+                          <span className={"font-mono"}>Frankfurt</span>
                         </SelectItem>
-                        <SelectItem value="SN">
+                        <SelectItem value="SG">
                           <Image src={snFlag} alt={snFlag} width={20} height={20} className={"inline-block me-2"}/>
-                          <span className={"font-mono"}>Singapore (+- 822ms)</span>
+                          <span className={"font-mono"}>Singapore</span>
                         </SelectItem>
                         <SelectItem value="US">
                           <Image src={usFlag} alt={usFlag} width={20} height={20} className={"inline-block me-2"}/>
-                          <span className={"font-mono"}>Washington, D.C (+- 256ms)</span>
+                          <span className={"font-mono"}>Washington, D.C</span>
                         </SelectItem>
                       </SelectContent>
                     </Select>

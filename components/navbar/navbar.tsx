@@ -12,6 +12,7 @@ import {
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
   const { user } = useUser();
@@ -53,6 +54,8 @@ export default function Navbar() {
           <SignUpButton/>
         </SignedOut>
         <SignedIn>
+          <Link href={"https://narodb.netlify.app/"} target={"_blank"} className={"hover:opacity-80"}>Docs</Link>
+          <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
           <UserButton/>
         </SignedIn>
       </div>

@@ -38,7 +38,7 @@ export default function Home() {
               <h1 className="text-lg md:text-xl lg:text-2xl font-semibold hidden sm:block">Narobase</h1>
             </div>
             <div className={"flex items-center space-x-4"}>
-              <Link href={"#"} className={"hover:opacity-80"}>Docs</Link>
+              <Link href={"https://narodb.netlify.app/"} target={"_blank"} className={"hover:opacity-80"}>Docs</Link>
               <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
               <SignedIn>
                 <Link
