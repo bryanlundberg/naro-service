@@ -144,7 +144,7 @@ const db = new Naro("connect", { URI });`}</code>
           <div>Now you can use the db object to interact with your NaroDB instance</div>
           <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
             <pre>
-              <code>{`const users = db.add("users", {
+              <code>{`const users = await db.add("users", {
   name: "John Doe",
 });`}</code>
             </pre>

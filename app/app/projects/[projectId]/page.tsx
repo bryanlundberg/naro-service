@@ -13,6 +13,7 @@ import Loader from "@/components/loader/loader";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import CreateCollectionModal from "@/components/modals/create-collection/create-collection-modal";
 import CreateDocumentModal from "@/components/modals/create-document/create-document-modal";
+import { toast } from "sonner";
 
 export default function Page() {
   const { projectId } = useParams();
@@ -136,7 +137,7 @@ export default function Page() {
         </div>
         <div className={"border border-neutral-900"}>
           <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>{data && collectionId && documentId ? documentId : null}</div>
-          <pre className={"break-words whitespace-pre-wrap overflow-x-auto text-sm p-2"}>
+          <pre className={"break-words whitespace-pre-wrap overflow-x-auto text-sm p-2 text-black dark:text-white"}>
     {data && collectionId && documentId
       ? JSON.stringify(data[collectionId]?.find((item: any) => item.id === documentId), null, 2)
       : ""}
@@ -145,7 +146,7 @@ export default function Page() {
       </div>
 
       <div className="text-center text-sm text-neutral-500 mt-4">
-        The database visualizer is currently under development. Stay tuned for updates!
+        The database visualizer is currently under development. Stay tuned for new updates!
       </div>
     </div>
   );
@@ -165,10 +166,14 @@ const ListItem = ({ label, active, className, onClickSecondary, ...rest }: ListI
       onClick={(e) => {
         e.stopPropagation();
         onClickSecondary?.();
+        toast("Item successfully deleted.", {
+          duration: 700,
+          icon: <MinusCircleIcon size={12}/>,
+        });
       }}
-      variant={"secondary"}
+      variant={"destructive"}
       size={"icon"}
-      className={"hover:bg-zinc-300 dark:hover:bg-zinc-600 bg-transparent shadow-none hidden group-hover:flex"}
+      className={"bg-zinc-300 dark:bg-zinc-600 dark:hover:bg-red-400 shadow-none hidden group-hover:flex"}
     ><MinusCircleIcon/>
     </Button>
   </div>;
