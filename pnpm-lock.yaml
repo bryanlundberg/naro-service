@@ -15,8 +15,8 @@ importers:
         specifier: ^2.2.45
         version: 2.2.45
       '@narodb/naro':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.2.3
+        version: 0.2.3
       '@radix-ui/react-dialog':
         specifier: ^1.1.13
         version: 1.1.13(@types/react-dom@19.1.3(@types/react@19.1.3))(@types/react@19.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -409,8 +409,8 @@ packages:
   '@napi-rs/wasm-runtime@0.2.9':
     resolution: {integrity: sha512-OKRBiajrrxB9ATokgEQoG87Z25c67pCpYcCwmXYX8PBftC9pBfN18gnm/fh1wurSLEKIAt+QRFLFCQISrb66Jg==}
 
-  '@narodb/naro@0.1.0':
-    resolution: {integrity: sha512-xMwnNOTP4b9SWANofOIL0G9Bf/rfHENfisgokM1mpFBz5IOG85c2gT3snUz4Nib4axU9idLL/PWE3jMS9VUOww==}
+  '@narodb/naro@0.2.3':
+    resolution: {integrity: sha512-/FMnlFXRDd7E0P5wQMHXb0lA24uqFmmj5qL2F1+gjZdxde80bVnvEX3/QUurGfp6Gk3A2VHJOzI0u/Z3CMq6iA==}
     engines: {node: '>=18.0.0'}
 
   '@next/env@15.3.2':
@@ -3018,7 +3018,7 @@ snapshots:
       '@tybys/wasm-util': 0.9.0
     optional: true
 
-  '@narodb/naro@0.1.0':
+  '@narodb/naro@0.2.3':
     dependencies:
       fs-jetpack: 5.1.0
       lodash: 4.17.21
