@@ -8,6 +8,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CircleMinusIcon, PlusCircleIcon } from "lucide-react";
 import { useParams } from "next/navigation";
+import { ShineBorder } from "@/components/magicui/shine-border";
 
 interface CreateDocumentModalProps {
   mutate: VoidFunction;
@@ -72,6 +73,7 @@ export default function CreateDocumentModal({ mutate, handleClose }: CreateDocum
 
   return (
     <DialogContent>
+      <ShineBorder shineColor={"gray"}/>
       <DialogHeader>
         <DialogTitle>Add a document</DialogTitle>
       </DialogHeader>

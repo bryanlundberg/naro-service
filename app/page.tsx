@@ -7,6 +7,11 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { AnimatedBeamMultipleOutputDemo } from "@/components/animated-beam/animate-beam";
 import { AuroraText } from "@/components/magicui/aurora-text";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
+import React from "react";
+import { ModeToggle } from "@/components/mode-toggle/mode-toggle";
 
 export default function Home() {
   return (
@@ -33,20 +38,33 @@ export default function Home() {
 
         <div className={"absolute z-10 top-0 left-0 font-mono h-dvh w-full overflow-auto"}>
           <header className="flex justify-between items-center p-1 backdrop-blur-lg border-b sticky top-0 left-0 z-20 h-20 px-4">
-            <div className={"flex items-center space-x-2"}>
-              <Image src={"/logo_large_dark.svg"} alt={""} width={100} height={100} className="size-10 dark:invert"/>
-              <h1 className="text-lg md:text-xl lg:text-2xl font-semibold hidden sm:block">Narobase</h1>
+            <div className="flex items-center gap-2 relative">
+              <Image
+                src="/logo_large_dark.svg"
+                alt="Logo"
+                width={60}
+                height={60}
+                className="size-9 object-cover filter grayscale hover:cursor-pointer dark:invert"
+              />
+              <div
+                className={"absolute left-20 hidden lg:block bottom-0 text-red-500 font-black text-xs -skew-6 select-none hover:cursor-pointer"}
+              >Alpha
+              </div>
+              <h3
+                className="font-bold text-lg font-mono hidden lg:block select-none hover:cursor-pointer"
+              >NaroBase</h3>
             </div>
             <div className={"flex items-center space-x-4"}>
               <Link href={"https://narodb.netlify.app/"} target={"_blank"} className={"hover:opacity-80"}>Docs</Link>
               <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
+              <ModeToggle/>
               <SignedIn>
                 <Link
                   href={"/app/projects"}
                   className="relative bg-black text-white p-4 cursor-pointer
     before:content-[''] before:absolute before:inset-0 before:bg-red-500
     before:transition-transform before:duration-300 before:z-[-1]
-    hover:before:translate-x-[-10%] hover:before:translate-y-[10%]"
+    hover:before:translate-x-[-4%] hover:before:translate-y-[10%]"
                 >
                   Dashboard
                 </Link>
@@ -54,10 +72,10 @@ export default function Home() {
               <SignedOut>
                 <SignInButton mode="modal" forceRedirectUrl={"/app/projects"}>
                   <button
-                    className="relative bg-black text-white p-4 cursor-pointer
+                    className="relative bg-neutral-900 text-white p-4 cursor-pointer
     before:content-[''] before:absolute before:inset-0 before:bg-red-500
     before:transition-transform before:duration-300 before:z-[-1]
-    hover:before:translate-x-[-10%] hover:before:translate-y-[10%]"
+    hover:before:translate-x-[-4%] hover:before:translate-y-[10%]"
                   >
                     Sign In
                   </button>
@@ -66,47 +84,81 @@ export default function Home() {
             </div>
           </header>
 
-          <main className={"p-10 sm:mt-5 flex"}>
+          <main className={"p-10 md:p-0 flex"}>
             <div className={"flex-9/12"}>
               <div className={"text-4xl sm:text-5xl md:text-6xl lg:text-6xl md:text-center"}>
-                <div className="font-bold">
-                  <AuroraText className="italic" speed={10}>Open Source</AuroraText>
+                <BlurFade delay={0.1} inView>
+                  <Link href={"https://github.com/narodb/naro"} target={"_blank"}>
+                    <AnimatedShinyText className="inline-flex text-xs items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-500 hover:duration-300 hover:dark:text-neutral-400 select-none">
+                      <span>✨ NaroDB v0.2.6 just shipped</span>
+                    </AnimatedShinyText>
+                  </Link>
+                </BlurFade>
+                <BlurFade delay={0.25} inView>
+                  <div className="font-bold">
+                    <AuroraText className="italic" speed={10}>Open Source</AuroraText>
+                  </div>
+                </BlurFade>
+                <BlurFade delay={0.25 * 2} inView>
+                  <div className="font-bold capitalize">design for humans</div>
+                </BlurFade>
+
+                <BlurFade delay={0.25 * 3} inView>
+                  <div className="font-bold capitalize">database</div>
+                </BlurFade>
+              </div>
+
+              <BlurFade delay={0.25 * 5} inView>
+                <AnimatedBeamMultipleOutputDemo className={"p-5 my-20 h-72"}/>
+              </BlurFade>
+              <BlurFade delay={0.25 * 7} inView>
+                <div className={"text-md mt-10 text-center"}>NaroDB runs entirely in memory for real-time
+                  speed you can feel.
                 </div>
-                <div className="font-bold">IMDB Engineering</div>
-                <div className="font-bold">Platform</div>
-              </div>
+              </BlurFade>
 
-              <AnimatedBeamMultipleOutputDemo className={"p-5 my-20 h-72"}/>
 
-              <div className={"text-md mt-10 text-center"}>NaroDB runs entirely in memory for real-time
-                speed you can feel.
-              </div>
-
-              <div className={"flex space-x-2 mt-10 md:justify-center"}>
-                <SignedOut>
-                  <SignInButton mode="modal" forceRedirectUrl={"/app/projects"}>
-                    <button
-                      className="relative bg-black text-white p-4 cursor-pointer
+              <BlurFade delay={0.25 * 10} inView>
+                <div className={"flex space-x-5 mt-10 md:justify-center"}>
+                  <SignedOut>
+                    <SignInButton mode="modal" forceRedirectUrl={"/app/projects"}>
+                      <button
+                        className="relative bg-neutral-900 text-white p-4 cursor-pointer
     before:content-[''] before:absolute before:inset-0 before:bg-teal-500
     before:transition-transform before:duration-300 before:z-[-1]
-    hover:before:translate-x-[-10%] hover:before:translate-y-[10%]"
-                    >Try demo
-                    </button>
-                  </SignInButton>
-                </SignedOut>
+    hover:before:translate-x-[-4%] hover:before:translate-y-[10%]"
+                      >Try demo
+                      </button>
+                    </SignInButton>
+                  </SignedOut>
 
-                <Link
-                  href={"https://github.com/bryanlundberg/naro-service"}
-                  target={"_blank"}
-                  className="relative text-black bg-white border p-4 cursor-pointer hover:bg-neutral-100 transition duration-300 flex items-center gap-2"
-                >
-                  <svg className={"size-4"} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <title>GitHub</title>
-                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                  </svg>
-                  Star on Github
-                </Link>
-              </div>
+                  <Link
+                    href={"https://github.com/bryanlundberg/naro-service"}
+                    target={"_blank"}
+                    className="relative text-black border-none bg-white p-4 cursor-pointer uppercase transition duration-500 flex items-center gap-2 before:content-[''] before:absolute before:inset-0 before:bg-black
+    before:transition-transform before:duration-300 before:z-[-1]
+    hover:before:translate-x-[-4%] hover:before:translate-y-[10%]"
+                  >
+                    <svg className={"size-4"} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <title>GitHub</title>
+                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                    Star on Github
+                    <BorderBeam
+                      duration={6}
+                      size={400}
+                      className="from-transparent via-red-500 to-transparent"
+                    />
+                    <BorderBeam
+                      duration={6}
+                      delay={3}
+                      size={400}
+                      className="from-transparent via-blue-500 to-transparent"
+                    />
+                  </Link>
+                </div>
+
+              </BlurFade>
             </div>
           </main>
         </div>

@@ -67,7 +67,21 @@
     transform: rotate(3deg) scale(1.05);}
   100% {
     background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);}}}
+    transform: rotate(-5deg) scale(0.9);}}
+  --animate-shine: shine var(--duration) infinite linear;
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;}
+  50% {
+    background-position: 100% 100%;}
+  to {
+    background-position: 0% 0%;}}
+  --animate-shiny-text: shiny-text 8s infinite;
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;}
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;}}}
 
 :root {
   --radius: 0.625rem;

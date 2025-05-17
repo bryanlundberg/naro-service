@@ -27,6 +27,7 @@ import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import Loader from "@/components/loader/loader";
+import { ShineBorder } from "@/components/magicui/shine-border";
 
 export default function Page() {
   const deFlag = findFlagUrlByIso2Code("DE");
@@ -36,7 +37,11 @@ export default function Page() {
   const { user } = useUser();
   const { organization } = useOrganization();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: projects, isLoading, mutate } = useSWR(`/api/v1/projects/${organization ? organization?.id : user?.id}`, fetcher);
+  const {
+    data: projects,
+    isLoading,
+    mutate
+  } = useSWR(`/api/v1/projects/${organization ? organization?.id : user?.id}`, fetcher);
   const { register, handleSubmit, formState: { errors }, control } = useForm({
     defaultValues: {
       engine: "naro",
@@ -47,7 +52,7 @@ export default function Page() {
 
   const handleCreateProject = async (data: any) => {
     try {
-      const orgId = organization ? organization.id : user?.id
+      const orgId = organization ? organization.id : user?.id;
       const response = await axios.post(`/api/v1/projects/${orgId}`, { ...data, orgId });
       await mutate();
       setIsModalOpen(false);
@@ -73,13 +78,15 @@ export default function Page() {
             </Button>
           </DialogTrigger>
           <DialogContent>
+            <ShineBorder shineColor={"gray"}/>
             <DialogHeader>
               <DialogTitle>Create project</DialogTitle>
 
               <form className={"space-y-2 pt-5"} onSubmit={handleSubmit(handleCreateProject)}>
 
                 <Label htmlFor="email">Project name</Label>
-                <Input autoComplete={"off"} {...register("projectName", {
+                <Input
+                  autoComplete={"off"} {...register("projectName", {
                   required: "Project name is required",
                   minLength: {
                     value: 3,

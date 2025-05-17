@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "next/navigation";
+import { ShineBorder } from "@/components/magicui/shine-border";
 
 interface CreateCollectionModalProps {
   mutate: VoidFunction;
@@ -58,6 +59,7 @@ export default function CreateCollectionModal({ mutate, handleClose }: CreateCol
 
   return (
     <DialogContent>
+      <ShineBorder shineColor={"gray"}/>
       <DialogHeader>
         <DialogTitle>Start a collection</DialogTitle>
       </DialogHeader>

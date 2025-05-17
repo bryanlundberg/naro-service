@@ -15,10 +15,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle/mode-toggle";
 import { Button } from "../ui/button";
+import { useTheme } from "next-themes";
+import { dark } from "@clerk/themes";
 
 export default function Navbar() {
   const { user } = useUser();
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
 
   return (
     <header className="flex justify-between items-center p-4 gap-4 h-16">
@@ -45,6 +48,9 @@ export default function Navbar() {
 
         <Button variant={"outline"} className={"p-0 h-fit w-fit"} size={"icon"}>
           <OrganizationSwitcher
+            appearance={{
+              baseTheme: resolvedTheme === "dark" ? dark : undefined
+            }}
             afterSelectPersonalUrl={() => `/app/projects`}
             afterSelectOrganizationUrl={() => `/app/projects`}
           />
@@ -61,7 +67,9 @@ export default function Navbar() {
           <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
           <ModeToggle/>
           <Button size={"icon"} variant={"outline"}>
-            <UserButton/>
+            <UserButton appearance={{
+              baseTheme: resolvedTheme === "dark" ? dark : undefined
+            }}/>
           </Button>
         </SignedIn>
       </div>
