@@ -87,7 +87,7 @@ export default function Page() {
 
   return (
     <div>
-      <div className={"flex justify-between items-center p-4 gap-4"}>
+      <div className={"flex justify-between items-center py-4 gap-4"}>
         <h2 className={"text-5xl font-bold mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span>
         </h2>
         <div className={"flex gap-2"}>
@@ -164,7 +164,7 @@ interface ListItemProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 const ListItem = ({ label, active, className, onClickSecondary, ...rest }: ListItemProps) => {
-  return <div {...rest} className={cn("p-2 flex items-center justify-between hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-50  hover:text-zinc-950 dark:hover:text-zinc-50 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap group h-12", className, active && "bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-50")}>
+  return <div {...rest} className={cn("p-2 flex items-center justify-between hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-50 hover:text-zinc-950 dark:hover:text-zinc-50 hover:cursor-pointer w-full sm:w-auto whitespace-nowrap group h-12 min-h-[3rem] max-h-[3rem]", className, active && "bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-50")}>
     {label}
     <Button
       onClick={(e) => {
