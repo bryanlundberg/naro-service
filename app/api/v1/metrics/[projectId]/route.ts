@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import { metricsManager } from "@/naro/metrics-manager";
 import getDatabase from "@/naro/db";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { projectId: string } }
-) {
+export async function GET(request: Request, { params }: { params: Promise<{ projectId: string }> }) {
   try {
     const { projectId } = await params;
 
@@ -13,7 +10,7 @@ export async function GET(
     const project = await db.get(`projects/${projectId}`);
     if (!project) {
       return NextResponse.json(
-        { success: false, error: `Project with ID "${projectId}" does not exist` },
+        { message: `Project with ID "${projectId}" does not exist` },
         { status: 404 }
       );
     }
@@ -23,7 +20,6 @@ export async function GET(
     if (!metrics) {
       return NextResponse.json(
         {
-          success: true,
           metrics: {
             operations: {
               reads: 0,
@@ -41,11 +37,11 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({ success: true, metrics });
+    return NextResponse.json({ metrics });
   } catch (error: unknown) {
     console.error("Error in metrics API route:", error);
     return NextResponse.json(
-      { success: false, error: error instanceof Error ? error.message : "Internal server error" },
+      { message: error instanceof Error ? error.message : "Internal server error" },
       { status: 500 }
     );
   }

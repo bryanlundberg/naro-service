@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 
     if (!projectId || !method) {
       return NextResponse.json(
-        { success: false, error: "Missing required fields: projectId or method" },
+        { message: "Missing required fields: projectId or method" },
         { status: 400 }
       );
     }
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const project = await db.get(`projects/${projectId}`);
     if (!project) {
       return NextResponse.json(
-        { success: false, error: `Project with ID "${projectId}" does not exist` },
+        { message: `Project with ID "${projectId}" does not exist` },
         { status: 400 }
       );
     }
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     // @ts-ignore
     if (typeof database[method] !== "function") {
       return NextResponse.json(
-        { success: false, error: `The method "${method}" does not exist in the database` },
+        { message: `The method "${method}" does not exist in the database` },
         { status: 400 }
       );
     }
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
   } catch (error: unknown) {
     console.error("Error in API route:", error);
     return NextResponse.json(
-      { success: false, error: error instanceof Error ? error.message : "Internal server error" },
+      { message: error instanceof Error ? error.message : "Internal server error" },
       { status: 500 }
     );
   }
