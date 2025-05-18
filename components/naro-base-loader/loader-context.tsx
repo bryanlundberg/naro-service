@@ -21,7 +21,7 @@ export function useLoaderContext() {
 
 export function LoaderProvider({ children }: { children: React.ReactNode }) {
   const [hasShownLoader, setHasShownLoader] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const pathname = usePathname();
 
   const isProjectsRoute = pathname?.startsWith('/app/projects');
@@ -39,8 +39,7 @@ export function LoaderProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <LoaderContext.Provider value={{ hasShownLoader, setHasShownLoader }}>
-      {showLoader && <NaroBaseLoader onLoadingComplete={handleLoadingComplete} />}
-      {children}
+      {showLoader ? <NaroBaseLoader onLoadingComplete={handleLoadingComplete} /> : children}
     </LoaderContext.Provider>
   );
 }

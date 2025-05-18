@@ -12,6 +12,7 @@ import { BlurFade } from "@/components/magicui/blur-fade";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import React from "react";
 import { ModeToggle } from "@/components/mode-toggle/mode-toggle";
+import { ArrowUpRightIcon } from "lucide-react";
 
 export default function Home() {
   return (
@@ -91,6 +92,7 @@ export default function Home() {
                   <Link href={"https://github.com/narodb/naro"} target={"_blank"}>
                     <AnimatedShinyText className="inline-flex text-xs items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-500 hover:duration-300 hover:dark:text-neutral-400 select-none">
                       <span>✨ NaroDB v0.2.6 just shipped</span>
+                      <ArrowUpRightIcon size={12} className={"ms-1"}/>
                     </AnimatedShinyText>
                   </Link>
                 </BlurFade>
@@ -100,11 +102,11 @@ export default function Home() {
                   </div>
                 </BlurFade>
                 <BlurFade delay={0.25 * 2} inView>
-                  <div className="font-bold capitalize">design for humans</div>
+                  <div className="font-bold capitalize">Built for Humans</div>
                 </BlurFade>
 
                 <BlurFade delay={0.25 * 3} inView>
-                  <div className="font-bold capitalize">database</div>
+                  <div className="font-bold capitalize">Database</div>
                 </BlurFade>
               </div>
 
@@ -112,8 +114,7 @@ export default function Home() {
                 <AnimatedBeamMultipleOutputDemo className={"p-5 my-20 h-72"}/>
               </BlurFade>
               <BlurFade delay={0.25 * 7} inView>
-                <div className={"text-md mt-10 text-center"}>NaroDB runs entirely in memory for real-time
-                  speed you can feel.
+                <div className={"text-md mt-10 text-center"}>NaroBase is running entirely with NaroDB.
                 </div>
               </BlurFade>
 
