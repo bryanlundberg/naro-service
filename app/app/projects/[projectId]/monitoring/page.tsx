@@ -1,7 +1,10 @@
-import DatabaseMonitoring from "@/components/database-monitoring/database-monitoring";
+"use client";
 
-export default async function Page({ params }: { params: { projectId: string } }) {
-  const { projectId } = await params;
+import DatabaseMonitoring from "@/components/database-monitoring/database-monitoring";
+import { useParams } from "next/navigation";
+
+export default function Page() {
+  const { projectId } = useParams();
   return (
     <DatabaseMonitoring projectId={projectId as string}/>
   )
