@@ -1,7 +1,6 @@
 "use client";
 
 import axios from 'redaxios';
-
 import {
   Dialog,
   DialogClose,
@@ -14,7 +13,6 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { orderBy } from "lodash";
 import { findFlagUrlByIso2Code } from "country-flags-svg";
-
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -26,7 +24,6 @@ import { Controller, useForm } from "react-hook-form";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
-import Loader from "@/components/loader/loader";
 import { ShineBorder } from "@/components/magicui/shine-border";
 
 export default function Page() {
@@ -154,7 +151,7 @@ export default function Page() {
         </Dialog>
       </div>
 
-      {isLoading ? <Loader/> : (
+      {isLoading ? <></> : (
         projects && projects.length > 0 ? (
           <table className={"w-full mt-5 border border-gray-300 dark:border-neutral-800"}>
             <thead className={"h-16 text-center bg-black text-white"}>

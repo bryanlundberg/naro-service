@@ -9,7 +9,6 @@ import { fetcher } from "@/lib/fetcher";
 import { useQueryState } from "nuqs";
 import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
-import Loader from "@/components/loader/loader";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import CreateCollectionModal from "@/components/modals/create-collection/create-collection-modal";
 import CreateDocumentModal from "@/components/modals/create-document/create-document-modal";
@@ -83,7 +82,7 @@ export default function Page() {
     if (error) return router.push("/app/projects");
   }, [error, router]);
 
-  if (loadingDatabase) return <Loader/>;
+  if (loadingDatabase) return <></>;
 
   return (
     <div>

@@ -7,7 +7,6 @@ import { useParams, useRouter } from "next/navigation";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
-import Loader from "@/components/loader/loader";
 import moment from "moment";
 import Deploying from "@/components/deploying/deploying";
 import { useEffect, useState } from "react";
@@ -70,7 +69,7 @@ export default function Page() {
     if (error) return router.push("/app/projects");
   }, [isLoading, error, router]);
 
-  if (isLoading) return <Loader/>;
+  if (isLoading) return <></>;
   if (!instance) return <></>;
 
   const naroUri = `${window.location.origin}/api/v1/databases;${orgId};${instance.id}`;
