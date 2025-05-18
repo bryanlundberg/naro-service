@@ -91,7 +91,7 @@ export default function Page() {
         <h2 className={"text-5xl font-bold mb-5 relative"}>Data <span className={"text-sm font-mono text-green-500 uppercase bg-green-200 p-1"}>realtime</span>
         </h2>
         <div className={"flex gap-2"}>
-          <Button disabled><MonitorIcon/>Monitor</Button>
+          <Button variant={"outline"} onClick={() => router.push(`/app/projects/${projectId}/monitoring`)}><MonitorIcon/>Monitor</Button>
           <Button onClick={() => router.push(`/app/projects/${projectId}/manage`)}><GearIcon/>Settings</Button>
         </div>
       </div>

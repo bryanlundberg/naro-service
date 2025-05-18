@@ -1,9 +1,9 @@
 import Navbar from "@/components/navbar/navbar";
 import React from "react";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { ClerkLoaded } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import Background from "@/components/background/background";
 
 export const metadata: Metadata = {
   title: "Narobase | Console for NaroDB",
@@ -15,15 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <NuqsAdapter>
         <div className={"relative w-full max-h-dvh overflow-hidden hidden md:block"}>
-          <FlickeringGrid
-            className="relative inset-0 z-0 mx-auto"
-            squareSize={40}
-            gridGap={6}
-            maxOpacity={0.02}
-            flickerChance={0.9}
-            height={1080}
-            width={1980}
-          />
+          <Background/>
           <div className={"absolute top-0 left-0 w-full h-full z-10 overflow-auto"}>
             <Navbar/>
             <div className={"max-w-7xl mx-auto p-4"}>

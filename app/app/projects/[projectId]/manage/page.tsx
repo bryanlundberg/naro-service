@@ -12,6 +12,8 @@ import moment from "moment";
 import Deploying from "@/components/deploying/deploying";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import Image from "next/image";
+import CodeBlock from "@/components/code-block/code-block";
 
 export default function Page() {
   const router = useRouter();
@@ -126,27 +128,53 @@ export default function Page() {
           <div className={"text-lg font-semibold mt-5"}>How to connect?</div>
 
           <div>Create a .env file in the root of your project</div>
-          <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
-            <pre>
-              <code>{`NARODB_URI=${naroUri}`}</code>
-            </pre>
-          </div>
+          <CodeBlock
+            code={`NARODB_URI=${naroUri}`}
+            language="env"
+            showLineNumbers={false}
+          />
 
           <div>Then in your code</div>
-          <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
-            <pre>
-              <code>{`import { Naro } from "@narodb/naro";
+          <CodeBlock
+            code={`import { Naro } from "@narodb/naro";
 const URI = process.env.NARODB_URI;
-const db = new Naro("connect", { URI });`}</code>
-            </pre>
-          </div>
+const db = new Naro("connect", { URI });`}
+            language="javascript"
+          />
           <div>Now you can use the db object to interact with your NaroDB instance</div>
-          <div className={"bg-gray-100 p-4 rounded text-sm dark:bg-neutral-800"}>
-            <pre>
-              <code>{`const users = await db.add("users", {
+          <CodeBlock
+            code={`const users = await db.add("users", {
   name: "John Doe",
-});`}</code>
-            </pre>
+});`}
+            language="javascript"
+          />
+
+          <div className={"text-lg font-semibold mt-5"}>Compatible and tested with popular frameworks</div>
+          <div className={"flex flex-wrap gap-6 mt-4 items-center mb-10"}>
+            <div className={"flex flex-col items-center"}>
+              <Image src="/runtimes/Express.svg" alt="Express.js" width={80} height={40} className={"object-contain h-10 dark:invert"} />
+              <span className={"text-sm mt-2"}>Express.js</span>
+            </div>
+            <div className={"flex flex-col items-center"}>
+              <Image src="/runtimes/Nest.js.svg" alt="Nest.js" width={80} height={40} className={"object-contain h-10"} />
+              <span className={"text-sm mt-2"}>Nest.js</span>
+            </div>
+            <div className={"flex flex-col items-center"}>
+              <Image src="/runtimes/Next.js.svg" alt="Next.js" width={80} height={40} className={"object-contain h-10 dark:invert"} />
+              <span className={"text-sm mt-2"}>Next.js</span>
+            </div>
+            <div className={"flex flex-col items-center"}>
+              <Image src="/runtimes/splash-dark-8nwlc0Nt.png" alt="TanStack" width={80} height={40} className={"object-contain h-10"} />
+              <span className={"text-sm mt-2"}>TanStack.js</span>
+            </div>
+            <div className={"flex flex-col items-center"}>
+              <Image src="/runtimes/183071544.png" alt="Nitro" width={80} height={40} className={"object-contain h-10"} />
+              <span className={"text-sm mt-2"}>Nitro.js</span>
+            </div>
+            <div className={"flex flex-col items-center"}>
+              <Image src="/runtimes/Fastify.svg" alt="Fastify" width={80} height={40} className={"object-contain h-10 dark:invert"} />
+              <span className={"text-sm mt-2"}>Fastify.js</span>
+            </div>
           </div>
         </>
       )}

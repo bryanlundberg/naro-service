@@ -156,7 +156,7 @@ export default function Page() {
 
       {isLoading ? <Loader/> : (
         projects && projects.length > 0 ? (
-          <table className={"w-full mt-5 border border-gray-400"}>
+          <table className={"w-full mt-5 border border-gray-300 dark:border-neutral-800"}>
             <thead className={"h-16 text-center bg-black text-white"}>
             <tr className={"font-mono"}>
               <th className={"ps-3 text-left"}>Name</th>

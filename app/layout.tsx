@@ -5,7 +5,6 @@ import React from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { neobrutalism } from '@clerk/themes'
 import { Toaster } from "@/components/ui/sonner";
-
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
@@ -30,7 +29,10 @@ export default function RootLayout({
       },
     }}>
       <html lang="en" suppressHydrationWarning>
-      <body className={`${GeistSans.className} ${GeistMono.className} antialiased`}>
+      <body className={`${GeistSans.className} antialiased`} style={{
+        '--font-geist-sans': GeistSans.style.fontFamily,
+        '--font-geist-mono': GeistMono.style.fontFamily,
+      } as React.CSSProperties}>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
