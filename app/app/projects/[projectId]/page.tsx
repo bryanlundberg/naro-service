@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MinusCircleIcon, MonitorIcon, PlusCircleIcon } from "lucide-react";
+import { EditIcon, MinusCircleIcon, MonitorIcon, PlusCircleIcon } from "lucide-react";
 import GearIcon from "next/dist/client/components/react-dev-overlay/ui/icons/gear-icon";
 import { useParams, useRouter } from "next/navigation";
 import useSWR from "swr";
@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import CreateCollectionModal from "@/components/modals/create-collection/create-collection-modal";
 import CreateDocumentModal from "@/components/modals/create-document/create-document-modal";
+import EditDocumentModal from "@/components/modals/edit-document/edit-document-modal";
 import { toast } from "sonner";
 
 export default function Page() {
@@ -20,6 +21,7 @@ export default function Page() {
   const { data, isLoading: loadingDatabase, mutate, error } = useSWR(`/api/v1/databases/${projectId}`, fetcher);
   const [isOpenCollectionModal, setIsOpenCollectionModal] = React.useState(false);
   const [isOpenDocumentModal, setIsOpenDocumentModal] = React.useState(false);
+  const [isOpenEditDocumentModal, setIsOpenEditDocumentModal] = React.useState(false);
   const [collectionId, setCollectionId] = useQueryState("~C1");
   const [documentId, setDocumentId] = useQueryState("~D1");
 
@@ -139,12 +141,64 @@ export default function Page() {
           ))}
         </div>
         <div className={"border border-neutral-900"}>
-          <div className={"text-center p-3 sticky inset-0 bg-black text-white h-12 font-semibold"}>{data && collectionId && documentId ? documentId : null}</div>
-          <pre className={"break-words whitespace-pre-wrap overflow-x-auto text-sm p-2 text-black dark:text-white"}>
-    {data && collectionId && documentId
-      ? JSON.stringify(data[collectionId]?.find((item: any) => item.id === documentId), null, 2)
-      : ""}
-  </pre>
+          <div className={"flex justify-between items-center p-3 sticky inset-0 bg-black text-white h-12"}>
+            <div className="font-semibold">{data && collectionId && documentId ? documentId : null}</div>
+            {data && collectionId && documentId && (
+              <Dialog open={isOpenEditDocumentModal} onOpenChange={setIsOpenEditDocumentModal}>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-400 border-blue-400 bg-blue-400 hover:text-white dark:bg-blue-400/20 dark:hover:bg-blue-400/50 dark:text-white"
+                  >
+                    <EditIcon size={16} className="mr-1"/> Edit
+                  </Button>
+                </DialogTrigger>
+                <EditDocumentModal
+                  mutate={mutate}
+                  handleClose={() => setIsOpenEditDocumentModal(false)}
+                  collectionId={collectionId}
+                  documentId={documentId}
+                  documentData={data[collectionId]?.find((item: any) => item.id === documentId)}
+                />
+              </Dialog>
+            )}
+          </div>
+          <div className="overflow-y-auto">
+            {data && collectionId && documentId ? (
+              <div>
+                {(() => {
+                  const documentData = data[collectionId]?.find((item: any) => item.id === documentId);
+                  if (!documentData) return null;
+
+                  return (
+                    <table className="w-full border-collapse">
+                      <tbody>
+                        {Object.entries(documentData).map(([key, value], index) => (
+                          <tr key={key} className={index % 2 === 0 ? "bg-white dark:bg-neutral-900" : "bg-gray-50 dark:bg-neutral-800"}>
+                            <td className="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700 font-medium text-neutral-700 dark:text-neutral-300 w-1/3">
+                              {key}
+                            </td>
+                            <td className="py-2 px-4 border-b border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200">
+                              {typeof value === 'object' ? (
+                                <pre className="font-mono text-sm whitespace-pre-wrap">
+                                  {JSON.stringify(value, null, 2)}
+                                </pre>
+                              ) : (
+                                <span className="font-mono">{String(value)}</span>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  );
+                })()}
+              </div>
+            ) : (
+              <div className="text-center text-neutral-500 p-4">Select a document to view its content</div>
+            )}
+          </div>
         </div>
       </div>
 
