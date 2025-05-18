@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className={"md:hidden flex flex-col gap-10 justify-center items-center p-10 text-center"}>We're sorry, but
+          <div className={"md:hidden flex flex-col gap-10 justify-center items-center p-10 text-center"}>We&apos;re sorry, but
             this website is currently optimized for bigger resolutions.
             Please visit us on a larger screen.
 
