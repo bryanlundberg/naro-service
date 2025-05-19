@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { dbManager } from "@/naro/db-manager";
 import getDatabase from "@/naro/db";
-import { metricsManager } from "@/naro/metrics-manager";
 
 export async function POST(request: Request) {
   try {
@@ -36,10 +35,6 @@ export async function POST(request: Request) {
 
     // @ts-ignore
     const result = await database[method](...params);
-
-    // Track the operation for metrics
-    const resultSize = JSON.stringify(result).length;
-    metricsManager.trackOperation(projectId, method, params, resultSize);
 
     return NextResponse.json({ ...result });
   } catch (error: unknown) {
