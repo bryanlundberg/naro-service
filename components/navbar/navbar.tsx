@@ -5,7 +5,7 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
-  SignUpButton,
+  SignUpButton, useAuth, useOrganization,
   UserButton,
   useUser
 } from "@clerk/nextjs";
@@ -22,7 +22,6 @@ export default function Navbar() {
   const { user } = useUser();
   const router = useRouter();
   const { resolvedTheme } = useTheme();
-
   return (
     <header className="flex justify-between items-center p-4 gap-4 h-16">
       <div className="flex items-center gap-2 relative">
@@ -53,6 +52,7 @@ export default function Navbar() {
             }}
             afterSelectPersonalUrl={() => `/app/projects`}
             afterSelectOrganizationUrl={() => `/app/projects`}
+            afterCreateOrganizationUrl={() => `/app/projects`}
           />
         </Button>
 

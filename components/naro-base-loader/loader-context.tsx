@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import NaroBaseLoader from './naro-base-loader';
+import useLoaderStore from "@/stores/NaroLoader.store";
 
 interface LoaderContextType {
   hasShownLoader: boolean;
@@ -20,8 +21,7 @@ export function useLoaderContext() {
 }
 
 export function LoaderProvider({ children }: { children: React.ReactNode }) {
-  const [hasShownLoader, setHasShownLoader] = useState(false);
-  const [showLoader, setShowLoader] = useState(true);
+  const { hasShownLoader, setHasShownLoader, showLoader, setShowLoader } = useLoaderStore();
   const pathname = usePathname();
 
   const isProjectsRoute = pathname?.startsWith('/app/projects');

@@ -26,13 +26,17 @@ import { fetcher } from "@/lib/fetcher";
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlusIcon, Settings } from "lucide-react";
+import useHasAdmin from "@/hooks/useHasAdmin";
+import useHasSubscription from "@/hooks/useHasSubscription";
 
 export default function Page() {
+  const hasSubscription = useHasSubscription();
   const deFlag = findFlagUrlByIso2Code("DE");
-  const snFlag = findFlagUrlByIso2Code("SG");
+  const sgFlag = findFlagUrlByIso2Code("SG");
   const usFlag = findFlagUrlByIso2Code("US");
   const router = useRouter();
   const { user } = useUser();
+  const isAdmin = useHasAdmin();
   const { organization } = useOrganization();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
@@ -50,6 +54,14 @@ export default function Page() {
 
   const handleCreateProject = async (data: any) => {
     try {
+      if (!hasSubscription && projects.length >= 1) {
+        return alert("You can only have one project in the free plan. Please upgrade to a paid plan to create more projects.");
+      }
+
+      if (hasSubscription && projects.length >= 5) {
+        return alert("You can only have five projects in the paid plan. Please upgrade to a business plan to create more projects.");
+      }
+
       const orgId = organization ? organization.id : user?.id;
       const response = await axios.post(`/api/v1/projects/${orgId}`, { ...data, orgId });
       await mutate();
@@ -71,9 +83,7 @@ export default function Page() {
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogTrigger asChild>
-            <Button>
-              New project
-            </Button>
+            <div></div>
           </DialogTrigger>
           <DialogContent>
             <ShineBorder shineColor={"gray"}/>
@@ -128,7 +138,7 @@ export default function Page() {
                           <span className={"font-mono"}>Frankfurt</span>
                         </SelectItem>
                         <SelectItem value="SG">
-                          <Image src={snFlag} alt={snFlag} width={20} height={20} className={"inline-block me-2"}/>
+                          <Image src={sgFlag} alt={sgFlag} width={20} height={20} className={"inline-block me-2"}/>
                           <span className={"font-mono"}>Singapore</span>
                         </SelectItem>
                         <SelectItem value="US">
@@ -155,18 +165,20 @@ export default function Page() {
       {isLoading ? <></> : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-5">
           {/* Create New Instance Card - Always First */}
-          <Card
-            className="cursor-pointer transition-all border border-blue-200 dark:border-blue-800 shadow-sm hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/20 bg-gradient-to-br from-white to-blue-50 dark:from-zinc-900 dark:to-blue-950/30"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <CardContent className="flex flex-col items-center justify-center h-full py-10">
-              <div className="rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-400 p-3 mb-4 shadow-md shadow-blue-200 dark:shadow-blue-900/30">
-                <PlusIcon className="h-8 w-8 text-white"/>
-              </div>
-              <CardTitle className="text-xl mb-2 text-blue-600 dark:text-blue-400">Create New Instance</CardTitle>
-              <CardDescription>Start a new database instance</CardDescription>
-            </CardContent>
-          </Card>
+          {isAdmin && (
+            <Card
+              className="cursor-pointer transition-all border border-blue-200 dark:border-blue-800 shadow-sm hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/20 bg-gradient-to-br from-white to-blue-50 dark:from-zinc-900 dark:to-blue-950/30"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <CardContent className="flex flex-col items-center justify-center h-full py-10">
+                <div className="rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-400 p-3 mb-4 shadow-md shadow-blue-200 dark:shadow-blue-900/30">
+                  <PlusIcon className="h-8 w-8 text-white"/>
+                </div>
+                <CardTitle className="text-xl mb-2 text-blue-600 dark:text-blue-400">Create New Instance</CardTitle>
+                <CardDescription>Start a new database instance</CardDescription>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Existing Instances Cards */}
           {projects && projects.length > 0 ? (
@@ -187,7 +199,7 @@ export default function Page() {
                       className={"inline-block me-2"}
                     />
                     <span className="font-mono text-sm">
-                      {project.region === "DE" ? "Frankfurt" : project.region === "SN" ? "Singapore" : "Washington, D.C"}
+                      {project.region === "DE" ? "Frankfurt" : project.region === "SG" ? "Singapore" : project.region === "US" ? "Washington, D.C" : "Unknown"}
                     </span>
                   </CardDescription>
                 </CardHeader>

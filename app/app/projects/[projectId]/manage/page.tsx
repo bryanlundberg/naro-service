@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CopyIcon, DatabaseIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { useOrganization, useUser } from "@clerk/nextjs";
+import { Protect, useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import moment from "moment";
@@ -21,13 +21,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import useHasAdmin from "@/hooks/useHasAdmin";
 
 export default function Page() {
   const router = useRouter();
   const { user } = useUser();
   const { organization } = useOrganization();
   const { projectId } = useParams();
-
+  const isAdmin = useHasAdmin();
   const orgId = organization ? organization.id : user?.id;
   const { data: instance, error, isLoading } = useSWR(
     orgId && projectId ? `/api/v1/projects/${orgId}/${projectId}` : null,
@@ -102,9 +103,11 @@ export default function Page() {
         </div>
         {instance.finishBuild && Date.now() > instance.finishBuild && (
           <div className={"flex gap-2"}>
-            <Button variant={"destructive"} onClick={() => setShowDeleteDialog(true)}>
-              Destroy
-            </Button>
+            {isAdmin && (
+              <Button variant={"destructive"} onClick={() => setShowDeleteDialog(true)}>
+                Destroy
+              </Button>
+            )}
             <Button
               onClick={() => router.push(`/app/projects/${projectId}`)}
             >
@@ -132,7 +135,7 @@ export default function Page() {
                 handleDeleteInstance();
                 setShowDeleteDialog(false);
               }}>
-                Destruir
+                Confirm
               </Button>
             </DialogFooter>
           </DialogContent>
