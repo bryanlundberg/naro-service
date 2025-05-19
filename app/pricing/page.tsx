@@ -96,7 +96,7 @@ export default function PricingPage() {
 
               <BlurFade delay={0.2} inView>
                 <p className="text-xl text-center text-neutral-600 dark:text-neutral-400 mb-16 max-w-3xl mx-auto">
-                  Choose the plan that's right for you and start building with NaroBase today.
+                  Choose the plan that&apos;s right for you and start building with NaroBase today.
                 </p>
               </BlurFade>
 

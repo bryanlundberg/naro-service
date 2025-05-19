@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import NaroBaseLoader from './naro-base-loader';
 import useLoaderStore from "@/stores/NaroLoader.store";

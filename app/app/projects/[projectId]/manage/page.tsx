@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CopyIcon, DatabaseIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { Protect, useOrganization, useUser } from "@clerk/nextjs";
+import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import moment from "moment";

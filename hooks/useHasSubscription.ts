@@ -1,4 +1,4 @@
-import { useAuth, useOrganization } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { useMemo } from "react";
 
 export default function useHasSubscription() {
