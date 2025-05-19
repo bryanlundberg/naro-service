@@ -18,13 +18,14 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import { ShineBorder } from "@/components/magicui/shine-border";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { PlusIcon, Settings } from "lucide-react";
 
 export default function Page() {
   const deFlag = findFlagUrlByIso2Code("DE");
@@ -64,8 +65,8 @@ export default function Page() {
       <div className={"flex justify-between items-center p-4 gap-4"}>
 
         <div className={"flex flex-col gap-2"}>
-          <h1 className={"font-black text-5xl"}>Projects</h1>
-          <p className={"font-mono text-sm mt-3"}>The NaroBase projects are containers for your databases.</p>
+          <h1 className={"font-black text-5xl"}>Instances</h1>
+          <p className={"font-mono text-sm mt-3"}>The NaroBase instances are containers for your databases.</p>
         </div>
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -152,62 +153,75 @@ export default function Page() {
       </div>
 
       {isLoading ? <></> : (
-        projects && projects.length > 0 ? (
-          <table className={"w-full mt-5 border border-gray-300 dark:border-neutral-800"}>
-            <thead className={"h-16 text-center bg-black text-white"}>
-            <tr className={"font-mono"}>
-              <th className={"ps-3 text-left"}>Name</th>
-              <th className={"text-left"}>Region</th>
-              <th className={"text-left"}>Backup</th>
-              <th className={"text-center"}>Storage</th>
-              <th className={"text-center"}>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {orderBy(projects, "createdAt", "desc").map((project) => (
-              <tr
-                onClick={() => router.push(`/app/projects/${project.id}`)}
-                className={"h-10 hover:bg-neutral-200 hover:cursor-pointer dark:hover:bg-zinc-800 transition duration-100"}
-                key={project.id}
-              >
-                <td className={"font-mono text-sm ps-3"}>{project.projectName}</td>
-                <td className={"font-mono text-sm"}>
-                  <Image
-                    src={findFlagUrlByIso2Code(project.region) || ""}
-                    alt={"region flag"}
-                    width={20}
-                    height={20}
-                    className={"inline-block me-2"}
-                  />
-                  <span>{project.region === "DE" ? "Frankfurt" : project.region === "SN" ? "Singapore" : "Washington, D.C"}</span>
-                </td>
-                <td className={"font-mono text-sm text-red-500"}>OFF</td>
-                <td className={"font-mono text-sm text-center"}>1 GB</td>
-                <td className={"font-mono text-sm "}>
-                  <div className={"flex justify-center items-center h-full grow"}>
-                    <Link
-                      onClick={(e) => e.stopPropagation()}
-                      href={`/app/projects/${project.id}/manage`}
-                      className={"text-blue-500 hover:underline"}
-                    >
-                      Settings
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ))}
-            </tbody>
-          </table>
-        ) : (
-          <div
-            className={"w-full border border-dashed h-96 flex flex-col justify-center hover:cursor-pointer items-center hover:bg-neutral-100 bg-neutral-50 dark:hover:bg-zinc-950 transition duration-300 dark:bg-background dark:border-foreground rounded-md mt-5 border-neutral-900"}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-5">
+          {/* Create New Instance Card - Always First */}
+          <Card
+            className="cursor-pointer transition-all border border-blue-200 dark:border-blue-800 shadow-sm hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/20 bg-gradient-to-br from-white to-blue-50 dark:from-zinc-900 dark:to-blue-950/30"
             onClick={() => setIsModalOpen(true)}
           >
-            <Image src={"/folder.png"} alt={""} width={100} height={100} className={"size-20 dark:invert"}/>
-            <h1 className={"font-mono text-xl"}>No projects found</h1>
-            <p className={"font-mono text-sm mt-3"}>Create a new project to get started.</p>
-          </div>
-        )
+            <CardContent className="flex flex-col items-center justify-center h-full py-10">
+              <div className="rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-400 p-3 mb-4 shadow-md shadow-blue-200 dark:shadow-blue-900/30">
+                <PlusIcon className="h-8 w-8 text-white"/>
+              </div>
+              <CardTitle className="text-xl mb-2 text-blue-600 dark:text-blue-400">Create New Instance</CardTitle>
+              <CardDescription>Start a new database instance</CardDescription>
+            </CardContent>
+          </Card>
+
+          {/* Existing Instances Cards */}
+          {projects && projects.length > 0 ? (
+            orderBy(projects, "createdAt", "desc").map((project) => (
+              <Card
+                key={project.id}
+                className="cursor-pointer hover:shadow-md transition-shadow"
+                onClick={() => router.push(`/app/projects/${project.id}`)}
+              >
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xl">{project.projectName}</CardTitle>
+                  <CardDescription className="flex items-center">
+                    <Image
+                      src={findFlagUrlByIso2Code(project.region) || ""}
+                      alt={"region flag"}
+                      width={20}
+                      height={20}
+                      className={"inline-block me-2"}
+                    />
+                    <span className="font-mono text-sm">
+                      {project.region === "DE" ? "Frankfurt" : project.region === "SN" ? "Singapore" : "Washington, D.C"}
+                    </span>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <p className="text-muted-foreground">Backup</p>
+                      <p className="font-medium text-red-500">OFF</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Storage</p>
+                      <p className="font-medium">100 Mb</p>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="pt-0 justify-end">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(`/app/projects/${project.id}/manage`);
+                    }}
+                  >
+                    <Settings className="h-4 w-4 mr-2"/>
+                    Settings
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))
+          ) : (
+            <></>
+          )}
+        </div>
       )}
     </>
   );

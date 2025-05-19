@@ -13,6 +13,14 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import CodeBlock from "@/components/code-block/code-block";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function Page() {
   const router = useRouter();
@@ -27,6 +35,7 @@ export default function Page() {
   );
 
   const [isDeploying, setIsDeploying] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const handleDeleteInstance = async () => {
     const response = await fetch(`/api/v1/projects/${orgId}`, {
@@ -93,7 +102,7 @@ export default function Page() {
         </div>
         {instance.finishBuild && Date.now() > instance.finishBuild && (
           <div className={"flex gap-2"}>
-            <Button variant={"destructive"} onClick={handleDeleteInstance}>
+            <Button variant={"destructive"} onClick={() => setShowDeleteDialog(true)}>
               Destroy
             </Button>
             <Button
@@ -104,6 +113,30 @@ export default function Page() {
             </Button>
           </div>
         )}
+
+        <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>
+                Delete confirmation
+              </DialogTitle>
+              <DialogDescription>
+                Are you sure you want to destroy this instance? This action cannot be undone.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setShowDeleteDialog(false)}>
+                Cancelar
+              </Button>
+              <Button variant="destructive" onClick={() => {
+                handleDeleteInstance();
+                setShowDeleteDialog(false);
+              }}>
+                Destruir
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className={"w-full border-b "}></div>
