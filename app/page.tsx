@@ -57,7 +57,7 @@ export default function Home() {
             </div>
             <div className={"flex items-center space-x-4"}>
               <Link href={"https://narodb.netlify.app/"} target={"_blank"} className={"hover:opacity-80"}>Docs</Link>
-              <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
+              <Link href={"/pricing"} className={"hover:opacity-80"}>Pricing</Link>
               <ModeToggle/>
               <SignedIn>
                 <Link

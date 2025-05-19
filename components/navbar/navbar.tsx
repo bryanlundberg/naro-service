@@ -64,7 +64,7 @@ export default function Navbar() {
         </SignedOut>
         <SignedIn>
           <Link href={"https://narodb.netlify.app/"} target={"_blank"} className={"hover:opacity-80"}>Docs</Link>
-          <Link href={"#"} className={"hover:opacity-80"}>Pricing</Link>
+          <Link href={"/pricing"} className={"hover:opacity-80"}>Pricing</Link>
           <ModeToggle/>
           <Button size={"icon"} variant={"outline"}>
             <UserButton appearance={{
