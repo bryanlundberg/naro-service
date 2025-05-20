@@ -159,4 +159,10 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, oklch(var(--border) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(var(--border) / 0.1) 1px, transparent 1px);
+  }
 }

@@ -23,7 +23,7 @@ export default function Navbar() {
   const router = useRouter();
   const { resolvedTheme } = useTheme();
   return (
-    <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b sticky top-0 left-0 z-20 h-20 px-6 transition-all duration-300">
+    <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b z-10 h-20 px-6 transition-all duration-300">
       <div className="flex items-center gap-2 relative group">
         <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-0 blur-xl group-hover:opacity-70 transition duration-500"></div>
         <Image

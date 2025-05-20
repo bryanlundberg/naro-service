@@ -24,13 +24,15 @@ import {
 } from "lucide-react";
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { useTheme } from "next-themes";
 
 export default function Home() {
+  const { resolvedTheme } = useTheme();
   return (
     <>
       <div className={"h-screen relative overflow-hidden"}>
-        <div className={"absolute z-10 top-0 left-0 font-mono h-dvh w-full overflow-auto"}>
-          <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b sticky top-0 left-0 z-20 h-20 px-6 transition-all duration-300">
+        <div className={"font-mono w-full overflow-auto"}>
+          <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b z-10 h-20 px-6 transition-all duration-300">
             <div className="flex items-center gap-2 relative group">
               <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-0 blur-xl group-hover:opacity-70 transition duration-500"></div>
               <Image
@@ -107,7 +109,7 @@ export default function Home() {
                 <FlickeringGrid
                   squareSize={3}
                   gridGap={12}
-                  color="var(--foreground)"
+                  color={resolvedTheme === "dark" ? "#ffffff" : "#000000"}
                   maxOpacity={0.15}
                   flickerChance={0.2}
                 />

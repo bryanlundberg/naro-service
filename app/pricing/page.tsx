@@ -2,7 +2,6 @@
 
 import { PricingTable, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
-import { GridPattern } from "@/components/magicui/grid-pattern";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { BlurFade } from "@/components/magicui/blur-fade";
@@ -16,27 +15,15 @@ export default function PricingPage() {
   const { resolvedTheme } = useTheme();
   return (
     <>
-      <div className={"h-screen relative overflow-hidden"}>
-        <GridPattern
-          squares={[
-            [4, 4],
-            [5, 1],
-            [8, 2],
-            [5, 3],
-            [5, 5],
-            [10, 10],
-            [12, 15],
-            [15, 10],
-            [10, 15],
-            [15, 9]
-          ]}
+      <div className={"min-h-screen overflow-hidden bg-gradient-to-b from-background to-background/80"}>
+        <div
           className={cn(
-            "[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]",
-            "inset-x-0 inset-y-[-50%] h-[100%] absolute top-0 left-0 -z-10"
+            "fixed inset-0 w-full h-full bg-grid-pattern opacity-10 -z-10",
+            "bg-[size:30px_30px] [mask-image:radial-gradient(900px_circle_at_center,white,transparent)]"
           )}
         />
-        <div className={"relative font-mono h-dvh w-full overflow-auto"}>
-          <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b sticky top-0 left-0 z-20 h-20 px-6 transition-all duration-300">
+        <div className={"font-mono w-full overflow-auto"}>
+          <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b z-10 h-20 px-6 transition-all duration-300">
             <div className="flex items-center gap-2 relative group">
               <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 opacity-0 blur-xl group-hover:opacity-70 transition duration-500"></div>
               <Link href="/">
@@ -49,7 +36,7 @@ export default function PricingPage() {
                 />
               </Link>
               <div
-                className={"absolute left-20 hidden lg:block bottom-0 text-red-500 font-black text-xs -skew-6 select-none hover:cursor-pointer z-10"}
+                className={"absolute left-20 hidden lg:block bottom-0 text-red-500 font-black text-xs -skew-6 select-none z-10"}
               >Alpha
               </div>
               <Link href="/">
