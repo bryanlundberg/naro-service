@@ -23,7 +23,7 @@ interface FlickeringGridProps extends React.HTMLAttributes<HTMLDivElement> {
 export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   squareSize = 4,
   gridGap = 6,
-  flickerChance = 0.3,
+  flickerChance = 0.15,
   color = "rgb(0, 0, 0)",
   width,
   height,

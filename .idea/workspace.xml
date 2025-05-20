@@ -18,9 +18,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="chore: add packageManager field to package.json&#10;&#10;Added the `packageManager` field to explicitly specify `pnpm@10.11.0`. This ensures consistency in package management across environments.">
+    <list default="true" id="d5893ce2-b6ca-4c86-b78d-9a1abcd8147c" name="Changes" comment="fix: update button styling for hover state&#10;&#10;Adjusted the hover styles for the button to improve visual feedback. This ensures better consistency and alignment with the design system across light and dark themes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/projects/[projectId]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/magicui/flickering-grid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/magicui/flickering-grid.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/magicui/shine-border.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/magicui/shine-border.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +38,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;bryan-alj1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/bryanlundberg/naro-service.git&quot;,
+    &quot;accountId&quot;: &quot;85b47674-9e23-4732-99d6-79570b26716d&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -43,27 +58,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.dev.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "ts.external.directory.path": "C:\\Users\\bryan\\OneDrive\\Documentos\\workspace\\naro-service\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bryan/OneDrive/Documentos/workspace/naro-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\bryan\\OneDrive\\Documentos\\workspace\\naro-service\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service\hooks" />
       <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service\app\api\v1\projects" />
       <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service\app" />
       <recent name="C:\Users\bryan\OneDrive\Documentos\workspace\naro-service" />
@@ -110,6 +130,17 @@
       <workItem from="1747135767346" duration="5461000" />
       <workItem from="1747182691003" duration="12368000" />
       <workItem from="1747223019545" duration="753000" />
+      <workItem from="1747510757264" duration="2479000" />
+      <workItem from="1747516687465" duration="16497000" />
+      <workItem from="1747568024127" duration="6055000" />
+      <workItem from="1747584242643" duration="80000" />
+      <workItem from="1747585548785" duration="4951000" />
+      <workItem from="1747606145431" duration="14969000" />
+      <workItem from="1747655751947" duration="3688000" />
+      <workItem from="1747666885250" duration="21000" />
+      <workItem from="1747709261803" duration="2016000" />
+      <workItem from="1747743087483" duration="1373000" />
+      <workItem from="1747748833942" duration="1678000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Next.js project with ESLint and TypeScript setup&#10;&#10;Set up a new Next.js project with configuration files for TypeScript and ESLint, including necessary dependencies and scripts for development and production. IntelliJ IDEA project settings were also included. This commit provides the foundation for development with modern linting and type-checking support.">
       <option name="closed" value="true" />
@@ -287,38 +318,182 @@
       <option name="project" value="LOCAL" />
       <updated>1747228317238</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="**chore: upgrade @narodb/naro to version 0.2.3**&#10;&#10;Updated @narodb/naro dependency from 0.1.0 to 0.2.3 in both `package.json` and `pnpm-lock.yaml`. This update ensures compatibility with the latest features and improvements of the library.">
+      <option name="closed" value="true" />
+      <created>1747502449816</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747502449816</updated>
+    </task>
+    <task id="LOCAL-00024" summary="chore: update @narodb/naro to version 0.2.5&#10;&#10;Upgraded @narodb/naro dependency from 0.2.3 to 0.2.5 in package.json and pnpm-lock.yaml. This ensures compatibility with the latest features and fixes in the library.">
+      <option name="closed" value="true" />
+      <created>1747503948061</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1747503948061</updated>
+    </task>
+    <task id="LOCAL-00025" summary="**fix: adjust spacing and height for improved UI consistency**&#10;&#10;Updated padding and spacing for better alignment in the header component. Added min and max height constraints to ListItem for consistent sizing across different elements.">
+      <option name="closed" value="true" />
+      <created>1747513700829</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1747513700829</updated>
+    </task>
+    <task id="LOCAL-00026" summary="**feat: add new components and enhance UI effects**&#10;&#10;Introduced new MagicUI components: `ShineBorder`, `BorderBeam`, and `AnimatedShinyText`, enabling customizable animations and visual effects. Integrated them into multiple UI elements like modals, the homepage, and the navbar to enhance interactivity and aesthetics. Updated dependencies with the addition of the `geist` package for font enhancements and theme improvements.">
+      <option name="closed" value="true" />
+      <created>1747525343351</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1747525343351</updated>
+    </task>
+    <task id="LOCAL-00027" summary="**feat: add CodeBlock component and runtime SVG assets**&#10;&#10;Introduce a `CodeBlock` React component with copy-to-clipboard functionality, line numbering, and styling. Additionally, add SVG assets for Node.js, Electron, and Fastify runtime logos for future use in the app.">
+      <option name="closed" value="true" />
+      <created>1747542710548</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1747542710548</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: integrate NaroBaseLoader with a loader context&#10;&#10;Added `NaroBaseLoader` and its context to enhance loader functionality across the application. Updated dependencies to include `framer-motion` to support animations and adjusted relevant components for proper integration.">
+      <option name="closed" value="true" />
+      <created>1747571411706</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1747571411706</updated>
+    </task>
+    <task id="LOCAL-00029" summary="`fix: adjust loader logic and update home page content`&#10;&#10;Updated the loader to display by default and simplified conditional rendering in the LoaderProvider. Modified the homepage with text refinements, added an external link icon, and clarified messaging about NaroDB functionality.">
+      <option name="closed" value="true" />
+      <created>1747572405297</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1747572405297</updated>
+    </task>
+    <task id="LOCAL-00030" summary="**refactor: remove Loader component usage**&#10;&#10;Replaced the `Loader` component with empty fragments (`&lt;&gt;&lt;/&gt;`) across multiple pages. This simplifies the code and reduces unnecessary dependency on the unused `Loader` component.">
+      <option name="closed" value="true" />
+      <created>1747573014040</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1747573014040</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fix: correct apostrophe usage and remove unused import&#10;&#10;Updated incorrect apostrophe in a layout message for consistency and readability. Additionally, removed an unused `useTheme` import from the loader component to improve code cleanliness.">
+      <option name="closed" value="true" />
+      <created>1747605007139</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1747605007139</updated>
+    </task>
+    <task id="LOCAL-00032" summary="**chore: simplify API response structure**&#10;&#10;Removed the redundant `success` field from API responses and directly used the `message` field for conveying errors or information. This streamlines the response structure and improves consistency across the codebase.">
+      <option name="closed" value="true" />
+      <created>1747605014476</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1747605014476</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat: migrate monitoring page to client-side rendering&#10;&#10;Migrated the monitoring page to use client-side rendering by replacing the async server-side params with the `useParams` hook from Next.js. This change improves interactivity and aligns with the latest app architecture practices.">
+      <option name="closed" value="true" />
+      <created>1747605020346</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1747605020346</updated>
+    </task>
+    <task id="LOCAL-00034" summary="**feat: add edit document modal and update dependencies**&#10;&#10;Introduced the EditDocumentModal component for editing documents within the UI. Updated the `@narodb/naro` dependency from version 0.2.5 to 0.2.6 in `package.json` and `pnpm-lock.yaml`. Enhanced document display by integrating an editable and styled table view for improved readability.">
+      <option name="closed" value="true" />
+      <created>1747610622304</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1747610622304</updated>
+    </task>
+    <task id="LOCAL-00035" summary="feat: add pricing page and update related links&#10;&#10;Introduce a new pricing page with a transparent pricing table and integrate it with the app's navigation. Updated &quot;Pricing&quot; links in the navbar and main page to point to the new pricing route. Also disabled the &quot;Monitor&quot; button on the project settings page for now.">
+      <option name="closed" value="true" />
+      <created>1747624489013</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1747624489013</updated>
+    </task>
+    <task id="LOCAL-00036" summary="**feat: replace projects table with card-based UI**&#10;&#10;Updated the &quot;Projects&quot; page to use a card-based layout instead of a table. Introduced support for a &quot;Create New Instance&quot; card and enhanced the display of existing instances with improved styling and intuitive controls. Additionally, added a confirmation dialog for instance deletion on the manage page.">
+      <option name="closed" value="true" />
+      <created>1747625785572</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1747625785572</updated>
+    </task>
+    <task id="LOCAL-00037" summary="**feat: add subscription and admin checks for project management**&#10;&#10;Introduced `useHasSubscription` and `useHasAdmin` hooks to enforce limits based on subscription plans and roles. Updated UI elements and backend logic to respect these constraints, preventing unauthorized actions like creating or deleting projects. Refactored loader state management using `zustand` for cleaner code.">
+      <option name="closed" value="true" />
+      <created>1747657876259</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1747657876259</updated>
+    </task>
+    <task id="LOCAL-00038" summary="**Refactor: remove metrics tracking from database route**&#10;&#10;Removed the call to `metricsManager.trackOperation` to simplify the database route logic. Metrics tracking for database operations is no longer required in this context.">
+      <option name="closed" value="true" />
+      <created>1747658110365</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1747658110365</updated>
+    </task>
+    <task id="LOCAL-00039" summary="**refactor: remove unused imports across multiple files**&#10;&#10;Eliminated unused imports from various components to improve code clarity and maintainability. This change reduces potential confusion and ensures cleaner dependency management. No functional behavior is affected.">
+      <option name="closed" value="true" />
+      <created>1747658249156</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1747658249156</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix: update button styling for hover state&#10;&#10;Adjusted the hover styles for the button to improve visual feedback. This ensures better consistency and alignment with the design system across light and dark themes.">
+      <option name="closed" value="true" />
+      <created>1747710216060</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1747710216060</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initialize Next.js project with ESLint and TypeScript setup&#10;&#10;Set up a new Next.js project with configuration files for TypeScript and ESLint, including necessary dependencies and scripts for development and production. IntelliJ IDEA project settings were also included. This commit provides the foundation for development with modern linting and type-checking support." />
-    <MESSAGE value="Remove package-lock.json from the repository&#10;&#10;The package-lock.json file was deleted to prevent version locking in shared environments or to reduce repository size. Dependencies will now rely solely on package.json, allowing more flexible and dynamic resolutions during installation." />
-    <MESSAGE value="Remove unused files and update dependencies.&#10;&#10;Deleted legacy files, redundant project configuration files, and old example code. Updated `tsconfig.json` paths and added new dependencies in `pnpm-lock.yaml` to reflect project changes. Cleaned up for a more streamlined structure." />
-    <MESSAGE value="Add Clerk authentication middleware and UI integration&#10;&#10;Introduced Clerk middleware for route protection and configured it for specific paths. Updated the root layout to include ClerkProvider and authentication UI components (SignIn, SignUp, and UserButton) for better user session management." />
-    <MESSAGE value="Add Projects page and remove unused SVG assets&#10;&#10;Added a new Projects page with a table view and modal for creating projects. Removed unused SVG assets (file.svg, globe.svg, next.svg, vercel.svg, window.svg) to clean up the public directory. Added a logo_large_dark.svg asset for branding purposes." />
-    <MESSAGE value="Refactor component props and improve code readability&#10;&#10;Added unique keys to list items in the Projects page for better React rendering. Simplified and streamlined imports in the layout file for consistency. Addressed TypeScript linting with a temporary rule adjustment in the API route." />
-    <MESSAGE value="Refactor project management API and improve UI functionality.&#10;&#10;Replaced legacy API routes with new standardized endpoints for better project management. Enhanced the Projects page with SWR integration, a loader component, and dynamic project listing. Updated dependencies for improved performance and added utility files like `fetcher` and `db-manager`." />
-    <MESSAGE value="Refactor project APIs and UI for dynamic management&#10;&#10;Replaced static project API routes with dynamic orgId-based endpoints and standardized database handling with lazy initialization. Improved project pages by integrating SWR for data fetching, adding loaders, and showing dynamic project details. Deprecated and commented out unused database manager methods for cleaner code." />
-    <MESSAGE value="Ignore `/data` directory in `.gitignore`&#10;&#10;Added `/data` to `.gitignore` to prevent tracking local data files. This ensures cleaner project management and avoids sharing unnecessary files." />
-    <MESSAGE value="Add dynamic project management and improve deployment UI&#10;&#10;Revised project API for dynamic orgId-based endpoints and adjusted deployment timing. Integrated a new &quot;Deploying&quot; component for better user feedback during builds and improved application metadata for branding. Enhanced project pages with conditional rendering, SWR data fetching, and cleaner code." />
-    <MESSAGE value="Add dynamic project management and improve API integration&#10;&#10;Refactored project APIs to support dynamic orgId-based endpoints and improved database handling with lazy initialization. Introduced SWR for efficient data fetching in project pages and optimized the UI with conditional rendering and loaders. Updated eslint and TypeScript rules, cleaned unused code in db-manager, and enhanced overall code quality." />
-    <MESSAGE value="Integrate Nuqs adapter and improve project data handling&#10;&#10;Added the Nuqs adapter for better state management and routing. Enhanced project data visualization with dynamic collection/document handling, improved database API routes for structured responses, and introduced real-time indicators. Upgraded dependencies and refactored UI components for a cleaner, more interactive experience." />
-    <MESSAGE value="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons  &#10;&#10;This commit introduces &quot;Start collection&quot; and &quot;Start document&quot; buttons to improve user interaction and navigation in the project view. Additionally, minor adjustments were made to the navbar, including making labels clickable for better user experience." />
-    <MESSAGE value="Add &quot;Start collection&quot; and &quot;Start document&quot; buttons&#10;&#10;Improve user interaction by introducing buttons for creating collections and documents in the project view. Enhanced navigation with clickable labels in the navbar and addressed minor UI adjustments for a better user experience." />
-    <MESSAGE value="Add POST handler for database method execution&#10;&#10;Introduced a new POST endpoint to handle dynamic database method execution based on projectId, method, and parameters. Simplified the GET handler by removing unnecessary calls and debug logs. These changes improve API functionality and maintainability." />
-    <MESSAGE value="Refactor Naro URI logic and adjust input width&#10;&#10;Updated the `naroUri` to use the current window location and a new format for consistency. Removed an unused `useRef` import and increased the maximum width of the input field for better UI flexibility." />
-    <MESSAGE value="Add project validation to database POST handler&#10;&#10;Enhanced the POST endpoint by incorporating project existence validation using `getDatabase()`. Added error handling and improved logging for better troubleshooting of API issues." />
-    <MESSAGE value="Update POST handler with project validation logic&#10;&#10;Added project existence validation to the database POST endpoint using `getDatabase()`. Improved error handling and logging to enhance API reliability and simplify troubleshooting." />
-    <MESSAGE value="Refactor Naro URI to use instance.id for clarity&#10;&#10;Updated the `naroUri` generation logic to use `instance.id` instead of `instance.applicationId` for better accuracy and clarity. This change ensures the correct identifier is utilized in the database API URL." />
     <MESSAGE value="build: Update @narodb/naro to version 0.1.0&#10;&#10;Upgraded @narodb/naro from 0.0.7 to 0.1.0 to include new features and dependencies. This update adds &quot;redaxios&quot; as a dependency and adjusts the package integrity hash to ensure compatibility." />
     <MESSAGE value="Add support for removing databases in DbManager&#10;&#10;Introduced a `removeDb` method to allow cleanup of specific databases. This includes clearing associated intervals and deleting the database instance, ensuring proper resource management." />
     <MESSAGE value="feat: add modal store, collection, and document modals  &#10;&#10;Introduce Zustand-based modal state management for better reusability. Add modals for creating collections and documents, including dynamic form handling for document fields. Update routes and components to integrate the new functionality seamlessly." />
     <MESSAGE value=" feat: implement project deletion functionality&#10;&#10;Added support for deleting a project instance through a new `DELETE` API endpoint and associated UI changes. Updated the delete button to call the handler and ensured proper cleanup of associated database entries. Minor improvement to input auto-completion for better user experience." />
     <MESSAGE value="**feat: update icons and enhance list item interactivity**&#10;&#10;Replaced `PlusIcon` with `PlusCircleIcon` for better visual clarity and added a `MinusCircleIcon` button to list items. Updated styling to show the button only on hover for improved user experience." />
+    <MESSAGE value="**chore: upgrade @narodb/naro to version 0.2.3**&#10;&#10;Updated @narodb/naro dependency from 0.1.0 to 0.2.3 in both `package.json` and `pnpm-lock.yaml`. This update ensures compatibility with the latest features and improvements of the library." />
+    <MESSAGE value="chore: update @narodb/naro to version 0.2.5&#10;&#10;Upgraded @narodb/naro dependency from 0.2.3 to 0.2.5 in package.json and pnpm-lock.yaml. This ensures compatibility with the latest features and fixes in the library." />
+    <MESSAGE value="**fix: adjust spacing and height for improved UI consistency**&#10;&#10;Updated padding and spacing for better alignment in the header component. Added min and max height constraints to ListItem for consistent sizing across different elements." />
+    <MESSAGE value="**feat: add AnimatedShinyText, ShineBorder, and BorderBeam components**&#10;&#10;Introduce new MagicUI components for enhanced" />
+    <MESSAGE value="**feat: add new components and enhance UI effects**&#10;&#10;Introduced new MagicUI components: `ShineBorder`, `BorderBeam`, and `AnimatedShinyText`, enabling customizable animations and visual effects. Integrated them into multiple UI elements like modals, the homepage, and the navbar to enhance interactivity and aesthetics. Updated dependencies with the addition of the `geist` package for font enhancements and theme improvements." />
+    <MESSAGE value="**feat: add CodeBlock component and runtime SVG assets**&#10;&#10;Introduce a `CodeBlock` React component with copy-to-clipboard functionality, line numbering, and styling. Additionally, add SVG assets for Node.js, Electron, and Fastify runtime logos for future use in the app." />
     <MESSAGE value="chore: add packageManager field to package.json&#10;&#10;Added the `packageManager` field to explicitly specify `pnpm@10.11.0`. This ensures consistency in package management across environments." />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add packageManager field to package.json&#10;&#10;Added the `packageManager` field to explicitly specify `pnpm@10.11.0`. This ensures consistency in package management across environments." />
+    <MESSAGE value="feat: integrate NaroBaseLoader with a loader context&#10;&#10;Added `NaroBaseLoader` and its context to enhance loader functionality across the application. Updated dependencies to include `framer-motion` to support animations and adjusted relevant components for proper integration." />
+    <MESSAGE value="`fix: adjust loader logic and update home page content`&#10;&#10;Updated the loader to display by default and simplified conditional rendering in the LoaderProvider. Modified the homepage with text refinements, added an external link icon, and clarified messaging about NaroDB functionality." />
+    <MESSAGE value="**refactor: remove Loader component usage**&#10;&#10;Replaced the `Loader` component with empty fragments (`&lt;&gt;&lt;/&gt;`) across multiple pages. This simplifies the code and reduces unnecessary dependency on the unused `Loader` component." />
+    <MESSAGE value="fix: correct apostrophe usage and remove unused import&#10;&#10;Updated incorrect apostrophe in a layout message for consistency and readability. Additionally, removed an unused `useTheme` import from the loader component to improve code cleanliness." />
+    <MESSAGE value="**chore: simplify API response structure**&#10;&#10;Removed the redundant `success` field from API responses and directly used the `message` field for conveying errors or information. This streamlines the response structure and improves consistency across the codebase." />
+    <MESSAGE value="feat: migrate monitoring page to client-side rendering&#10;&#10;Migrated the monitoring page to use client-side rendering by replacing the async server-side params with the `useParams` hook from Next.js. This change improves interactivity and aligns with the latest app architecture practices." />
+    <MESSAGE value="**feat: add edit document modal and update dependencies**&#10;&#10;Introduced the EditDocumentModal component for editing documents within the UI. Updated the `@narodb/naro` dependency from version 0.2.5 to 0.2.6 in `package.json` and `pnpm-lock.yaml`. Enhanced document display by integrating an editable and styled table view for improved readability." />
+    <MESSAGE value="feat: add pricing page and update related links&#10;&#10;Introduce a new pricing page with a transparent pricing table and integrate it with the app's navigation. Updated &quot;Pricing&quot; links in the navbar and main page to point to the new pricing route. Also disabled the &quot;Monitor&quot; button on the project settings page for now." />
+    <MESSAGE value="**feat: replace projects table with card-based UI**&#10;&#10;Updated the &quot;Projects&quot; page to use a card-based layout instead of a table. Introduced support for a &quot;Create New Instance&quot; card and enhanced the display of existing instances with improved styling and intuitive controls. Additionally, added a confirmation dialog for instance deletion on the manage page." />
+    <MESSAGE value="**feat: add subscription and admin checks for project management**&#10;&#10;Introduced `useHasSubscription` and `useHasAdmin` hooks to enforce limits based on subscription plans and roles. Updated UI elements and backend logic to respect these constraints, preventing unauthorized actions like creating or deleting projects. Refactored loader state management using `zustand` for cleaner code." />
+    <MESSAGE value="**Refactor: remove metrics tracking from database route**&#10;&#10;Removed the call to `metricsManager.trackOperation` to simplify the database route logic. Metrics tracking for database operations is no longer required in this context." />
+    <MESSAGE value="**refactor: remove unused imports across multiple files**&#10;&#10;Eliminated unused imports from various components to improve code clarity and maintainability. This change reduces potential confusion and ensures cleaner dependency management. No functional behavior is affected." />
+    <MESSAGE value="fix: update button styling for hover state&#10;&#10;Adjusted the hover styles for the button to improve visual feedback. This ensures better consistency and alignment with the design system across light and dark themes." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: update button styling for hover state&#10;&#10;Adjusted the hover styles for the button to improve visual feedback. This ensures better consistency and alignment with the design system across light and dark themes." />
   </component>
 </project>
