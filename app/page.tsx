@@ -30,7 +30,7 @@ export default function Home() {
   const { resolvedTheme } = useTheme();
   return (
     <>
-      <div className={"h-screen relative overflow-hidden"}>
+      <div className={"h-screen relative"}>
         <div className={"font-mono w-full overflow-auto"}>
           <header className="flex bg-background/50 justify-between items-center p-1 backdrop-blur-lg border-b z-10 h-20 px-6 transition-all duration-300">
             <div className="flex items-center gap-2 relative group">
