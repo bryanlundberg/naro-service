@@ -149,7 +149,7 @@ export default function Page() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-blue-400 border-blue-400 bg-blue-400 hover:text-white dark:bg-blue-400/20 dark:hover:bg-blue-400/50 dark:text-white"
+                    className="text-blue-400 border-blue-400 bg-blue-400/50 hover:bg-blue-600/50 hover:text-white dark:bg-blue-400/20 dark:hover:bg-blue-400/50 dark:text-white"
                   >
                     <EditIcon size={16} className="mr-1"/> Edit
                   </Button>
