@@ -140,7 +140,7 @@ export default function Page() {
             />
           ))}
         </div>
-        <div className={"border border-neutral-900"}>
+        <div className={"border border-neutral-900 overflow-y-auto"}>
           <div className={"flex justify-between items-center p-3 sticky inset-0 bg-black text-white h-12"}>
             <div className="font-semibold">{data && collectionId && documentId ? documentId : null}</div>
             {data && collectionId && documentId && (
